@@ -1,0 +1,31 @@
+{
+  "Header": {
+    "home": "Home",
+    "collection": "Collection",
+    "testimponial": "Testimponial",
+    "contact": "Contact",
+    "orders": "Orders",
+    "login": "Login",
+    "logout": "Logout",
+    "placeholder": "Search"
+  },
+  "Hero": {
+    "headline": "New Looks for Every Season",
+    "subheadline": "UPGRADE YOUR WARDROBE ",
+    "promoDetail": "– 30% on Dresses & Tops",
+    "pricePrefix": "Starting at"
+  },
+  "Features": {
+    "shippingTitle": "Free Shipping",
+    "shippingDescription": "On above $100 order",
+    "discountTitle": "Member Discount",
+    "discountDescription": "For elite Members",
+    "supportTitle": "Fast Support",
+    "supportDescription": "24/7 Customer Support",
+    "returnsTitle": "Easy Returns",
+    "returnsDescription": "14 Days Easy Returns"
+  },
+  "Categories": {
+    "Title": "Categories"
+  }
+}

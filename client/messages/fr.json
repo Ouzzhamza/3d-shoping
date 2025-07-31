@@ -1,0 +1,72 @@
+{
+  "common": {
+    "selectLanguage": "Sélectionner la Langue",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "back": "Retour",
+    "next": "Suivant",
+    "close": "Fermer",
+    "menu": "Menu"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "gallery": "Galerie",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "home": {
+    "welcome": "Salutations ! Je suis Bucephar, votre alien sympathique du quartier.",
+    "subtitle": "Explorateur curieux du cosmos et chercheur de merveilles cachées.",
+    "description": "Après avoir cherché dans toute la galaxie, j'ai trouvé quelque chose de vraiment intéressant, ici même—un royaume de merveilles.",
+    "explorePortal": "Pour l'explorer, jetez simplement un coup d'œil au portail rotatif à mes côtés. C'est votre passerelle pour explorer chaque recoin de ce royaume.",
+    "enterExperience": "Entrer dans l'Expérience 3D"
+  },
+  "gallery": {
+    "title": "Galerie 3D",
+    "description": "Explorez notre collection de modèles 3D et d'expériences interactives.",
+    "loadingModel": "Chargement du modèle 3D...",
+    "modelError": "Échec du chargement du modèle 3D"
+  },
+  "about": {
+    "title": "À propos de Bucephar",
+    "description": "En savoir plus sur notre explorateur cosmique et la technologie derrière cette expérience.",
+    "technology": "Construit avec Next.js, React Three Fiber et des technologies web modernes."
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Contactez-nous à travers la galaxie.",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "send": "Envoyer le Message",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès !",
+      "error": "Échec de l'envoi du message. Veuillez réessayer."
+    }
+  },
+  "canvas": {
+    "controls": {
+      "rotate": "Cliquez et faites glisser pour faire pivoter",
+      "zoom": "Faites défiler pour zoomer",
+      "pan": "Clic droit et glisser pour panoramiquer"
+    },
+    "performance": {
+      "fps": "IPS",
+      "memory": "Utilisation Mémoire",
+      "optimization": "Optimisation des performances active"
+    }
+  },
+  "pwa": {
+    "install": "Installer l'App",
+    "installPrompt": "Ajoutez cette app à votre écran d'accueil pour une meilleure expérience !",
+    "offline": "Vous êtes actuellement hors ligne. Certaines fonctionnalités peuvent être limitées.",
+    "update": "Une nouvelle version est disponible. Actualisez pour mettre à jour."
+  },
+  "accessibility": {
+    "skipToContent": "Aller au contenu principal",
+    "canvas3D": "Contenu Canvas 3D",
+    "navigateWith": "Naviguez avec les touches fléchées, espace pour interagir"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "common": {
+    "selectLanguage": "Seleccionar Idioma",
+    "loading": "Cargando...",
+    "error": "Ocurrió un error",
+    "retry": "Reintentar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "close": "Cerrar",
+    "menu": "Menú"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "gallery": "Galería",
+    "about": "Acerca de",
+    "contact": "Contacto"
+  },
+  "home": {
+    "welcome": "¡Saludos! Soy Bucephar, tu amigable alienígena del vecindario.",
+    "subtitle": "Explorador curioso del cosmos y buscador de maravillas ocultas.",
+    "description": "Después de buscar por toda la galaxia, encontré algo verdaderamente interesante, aquí mismo: un reino de maravillas.",
+    "explorePortal": "Para explorarlo, solo echa un vistazo al portal rotado a mi lado. Es tu puerta de entrada para explorar cada rincón de este reino.",
+    "enterExperience": "Entrar a la Experiencia 3D"
+  },
+  "gallery": {
+    "title": "Galería 3D",
+    "description": "Explora nuestra colección de modelos 3D y experiencias interactivas.",
+    "loadingModel": "Cargando modelo 3D...",
+    "modelError": "Error al cargar el modelo 3D"
+  },
+  "about": {
+    "title": "Acerca de Bucephar",
+    "description": "Aprende más sobre nuestro explorador cósmico y la tecnología detrás de esta experiencia.",
+    "technology": "Construido con Next.js, React Three Fiber y tecnologías web modernas."
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "Ponte en contacto con nosotros a través de la galaxia.",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo",
+      "message": "Mensaje",
+      "send": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado exitosamente!",
+      "error": "Error al enviar mensaje. Por favor intenta de nuevo."
+    }
+  },
+  "canvas": {
+    "controls": {
+      "rotate": "Haz clic y arrastra para rotar",
+      "zoom": "Desplázate para hacer zoom",
+      "pan": "Clic derecho y arrastra para desplazar"
+    },
+    "performance": {
+      "fps": "FPS",
+      "memory": "Uso de Memoria",
+      "optimization": "Optimización de rendimiento activa"
+    }
+  },
+  "pwa": {
+    "install": "Instalar App",
+    "installPrompt": "¡Agrega esta app a tu pantalla de inicio para una mejor experiencia!",
+    "offline": "Estás sin conexión. Algunas funciones pueden estar limitadas.",
+    "update": "Una nueva versión está disponible. Actualiza para obtenerla."
+  },
+  "accessibility": {
+    "skipToContent": "Saltar al contenido principal",
+    "canvas3D": "Contenido del Canvas 3D",
+    "navigateWith": "Navega con las flechas del teclado, espacio para interactuar"
+  }
+}
