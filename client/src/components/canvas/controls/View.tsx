@@ -7,6 +7,8 @@ import {
   useState,
 } from "react";
 import {
+  ContactShadows,
+  Environment,
   OrbitControls,
   PerspectiveCamera,
   View as ViewImpl,
@@ -14,6 +16,7 @@ import {
 import { Three } from "../helpers/Three";
 import { useThree } from "@react-three/fiber";
 import { PerspectiveCamera as PerspectiveCameraImpl } from "three";
+import { Spinner } from "@/components/ui/Spinner";
 
 type CameraData = {
   position: [number, number, number];
@@ -70,7 +73,7 @@ export const Common = ({
   enableOrbitControls = true,
   enableZoom = true,
   lockVerticalOrbit = false,
-}: {
+} : {
   color: string;
   jsonPath: string;
   enableOrbitControls?: boolean;
@@ -79,7 +82,6 @@ export const Common = ({
 }) => {
   const { cameraData, loading, error } = useCameraDataFromJSON(jsonPath);
   const cameraRef = useRef<PerspectiveCameraImpl>(null);
-  const { camera } = useThree();
 
   useEffect(() => {
     if (cameraRef.current) {
@@ -160,20 +162,37 @@ export const Common = ({
   );
 };
 
+
+export const City = () => {
+  return (
+    <>
+     <ambientLight intensity={0.7} />
+      <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, -5]} castShadow />
+      <Environment preset="city" background blur={1} />
+      <ContactShadows resolution={512} position={[0, -0.8, 0]} opacity={1} scale={10} blur={2} far={0.8} />
+    </>
+  )
+}
+
 type ViewProps = {
   children?: React.ReactNode;
   orbit?: boolean;
   [key: string]: any;
 };
 
-const View = forwardRef<HTMLDivElement, ViewProps>(
-  ({ children, orbit, ...props }, ref) => {
+const View = forwardRef<HTMLDivElement, ViewProps & { loading?: boolean }>(
+  ({ children, orbit, loading, ...props }, ref) => {
     const localRef = useRef<HTMLDivElement>(null);
     useImperativeHandle(ref, () => localRef.current as HTMLDivElement);
-
     return (
       <>
-        <div ref={localRef} {...props} />
+        <div ref={localRef} {...props}>
+          {loading && (
+            <div className="absolute inset-0 flex justify-center items-center z-10">
+              <Spinner size="h-14 w-14" />
+            </div>
+          )}
+        </div>
         <Three>
           <ViewImpl track={localRef as React.RefObject<HTMLElement>}>
             {children}

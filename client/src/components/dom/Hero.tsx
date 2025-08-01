@@ -1,19 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { Spinner } from "../ui/Spinner";
-import { Html } from "@react-three/drei";
 
 const Hero3D = dynamic(
   () => import("@/components/canvas/Tshirt").then((mod) => mod.Tshirt),
   {
     ssr: false,
-    loading: () => <Html className="w-full h-full flex justify-center items-center">
-      <Spinner size="h-14 w-14" />
-    </Html> ,
+    // loading: () => {
+    //   console.log("Dynamic component loading...");
+    //   return null;
+    // },
   }
 );
 
@@ -29,11 +29,13 @@ const Common = dynamic(
   () => import("@/components/canvas/controls/View").then((mod) => mod.Common),
   {
     ssr: false,
-    // loading: () => <Spinner size="h-14 w-14" />,
   }
 );
 
 function Hero() {
+
+  const [isLoading, setIsLoading] = useState(true);
+
   const t = useTranslations("Hero");
   return (
     <section className="max-padd-container w-full h-screen flex flex-col md:flex-row gap-8 md:gap-0 mt-24">
@@ -71,9 +73,17 @@ function Hero() {
       </div>
 
       {/* Video/Content Section */}
-      <div className="flex flex-col justify-center items-center w-full md:w-1/2 h-1/2 md:h-full ">
-        <View className="relative w-[300px] h-[400px] md:w-[400px] md:h-[600px] bg-transparent border-primary-2 rounded-3xl  flex justify-center items-center">
-          <Hero3D scale={2} position={[0, -1.6, 0]} />
+      <div className="relative flex flex-col justify-center items-center w-full md:w-1/2 h-1/2 md:h-full ">
+        <View
+          className="relative w-[300px] h-[400px] md:w-[400px] md:h-[600px] bg-transparent border-primary-2 rounded-3xl flex justify-center items-center"
+          loading={isLoading}
+        >
+          <Hero3D
+            scale={2}
+            position={[0, -1.6, 0]}
+            path="/Tshirt.glb"
+            onLoad={() => setIsLoading(false)}
+          />
           <Common
             color={""}
             jsonPath={"/camera_coordinates.json"}

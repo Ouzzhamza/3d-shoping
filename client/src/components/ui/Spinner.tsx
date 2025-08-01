@@ -13,7 +13,7 @@ export const Spinner = ({
 }) => {
   return (
     <div
-      className={`flex h-96 w-full flex-col items-center justify-center ${className}`}
+      className={` relative flex h-full w-full flex-col items-center justify-center ${className}`}
     >
       <div className="relative flex flex-col items-center">
         {/* Glow effect */}

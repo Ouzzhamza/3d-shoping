@@ -1,5 +1,7 @@
 // types/global.d.ts
 import type { ReactNode } from "react";
+import { GroupProps } from "@react-three/fiber";
+
 
 declare global {
 
@@ -81,4 +83,9 @@ export type NavbarButtonProps<T extends React.ElementType = "a"> = {
 
 export type NavControllersProps = {
   isAuthonticated: boolean;
+};
+
+export type ObjectProps = GroupProps & {
+  onLoad: () => void;
+  path: string;
 };

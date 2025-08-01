@@ -1,28 +1,28 @@
+import { ObjectProps } from "@/types/global";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
-export function Tshirt(props: any) {
-  // Properly type the ref for a THREE.Group or THREE.Object3D
+export function Tshirt({ path, onLoad, ...restProps }: ObjectProps) {
   const ref = useRef<THREE.Group>(null);
-  const { scene } = useGLTF("/Tshirt.glb");
+  const { scene } = useGLTF(path, true); // `true` for draco decode if needed
+    console.log("Tshirt mounted", { path, onLoad });
+
+  // Call onLoad once the scene is ready
+  useEffect(() => {
+    if (scene && onLoad) {
+      onLoad();
+    }
+  }, [scene, onLoad]);
 
   useFrame((state) => {
-    // Check if ref.current exists before using it
     if (ref.current) {
       const t = state.clock.getElapsedTime();
-      ref.current.rotation.set(
-        // Math.cos(t / 4) / 8,
-        // Math.sin(t / 3) / 4,
-        0,
-        Math.sin(t / 3) / 4,
-        0
-        // 0.15 + Math.sin(t / 2) / 8
-      );
-      // ref.current.position.y = (0.5 + Math.cos(t / 2)) / 7;
+      ref.current.rotation.set(0, Math.sin(t / 3) / 4, 0);
     }
   });
 
-  return <primitive object={scene} {...props} ref={ref} />;
+  return <primitive object={scene} {...restProps} ref={ref} />;
 }
+
