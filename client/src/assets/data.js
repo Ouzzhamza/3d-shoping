@@ -6,10 +6,10 @@
 // import Accessories from "/glasses1.glb";
 
 export const categories = [
-  { name: "Men", object: "/glb/Hoodie.glb" },
-  { name: "Women", object: "/glb/Robe2-1.glb" },
-  { name: "Kids", object: "/glb/kids.glb" },
-  { name: "Footwear", object: "/glb/Shoe1-1.glb" },
-  { name: "Athleticwear", object: "/glb/jersey2.glb" },
-  { name: "Accessories", object: "/glb/glasses1.glb" },
+  { name: "Men", object: "/Hoodie.glb" },
+  { name: "Women", object: "/Robe2-1.glb" },
+  { name: "Kids", object: "/Kids.glb" },
+  { name: "Footwear", object: "/Shoe1-2.glb" },
+  { name: "Athleticwear", object: "/jersey2.glb" },
+  { name: "Accessories", object: "/glasses1.glb" },
 ];

@@ -16,7 +16,7 @@
   --font-family-custom: "Inter", "Roboto", sans-serif;
   --font-family-display: "Pacifico", "cursive", serif;
 
-  --background-image-hero: url("/src/assets/bg.png");
+  /* --background-image-hero: url("/src/assets/bg.png"); */
   --background-image-contact: url("/src/assets/contact.png");
 }
 
@@ -27,10 +27,20 @@
 
 /* Base layer styles */
 @layer base {
+
+  * {
+    box-sizing: border-box;
+  }
+
   html,
   body,
   #root {
+    width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
     background-image: url("../assets/bg.png");
     background-size: cover;
     background-position: center;
@@ -79,7 +89,7 @@
 @layer utilities {
   
   .border-primary-2 {
-    border-width: 2px;
+    border-width: 6px;
     border-color: var(--color-primary);
   }
   /* FONTS */
@@ -269,7 +279,6 @@
   justify-content: center;
   align-items: center !important;
 }
-
   /* .mySwiper .swiper-slide {
   min-height: 250px;
 } */

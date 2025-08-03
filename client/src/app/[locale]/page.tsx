@@ -11,8 +11,8 @@ export default function HomePage() {
   return (
     <div className="h-full">
       <Hero />
-      <Features />
-      <Categories />
+      {/* <Features /> */}
+      {/* <Categories /> */}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 // types/global.d.ts
 import type { ReactNode } from "react";
 import { GroupProps } from "@react-three/fiber";
+import { Float } from '@react-three/drei';
 
 
 declare global {
@@ -64,13 +65,6 @@ export interface MobileNavToggleProps {
   onClick: () => void;
 }
 
-// export interface NavbarButtonProps extends React.ComponentPropsWithoutRef<"a"> {
-//   href?: string;
-//   as?: React.ElementType;
-//   children?: React.ReactNode;
-//   className?: string;
-//   variant?: "primary" | "secondary" | "dark" | "gradient";
-// }
 
 export type NavbarButtonProps<T extends React.ElementType = "a"> = {
   as?: T;
@@ -88,4 +82,44 @@ export type NavControllersProps = {
 export type ObjectProps = GroupProps & {
   onLoad: () => void;
   path: string;
+  speed: Float;
 };
+
+
+export type ProductType =
+  | "men"
+  | "women"
+  | "kids"
+  | "footwear"
+  | "athleticwear"
+  | "accessories"
+  | "hero";
+
+export interface CommonProps {
+  enableOrbitControls?: boolean;
+  enableZoom?: boolean;
+  lockVerticalOrbit?: boolean;
+  productType?: ProductType;
+  enableFloating?: boolean;
+  enableRotation?: boolean;
+}
+
+type EnvironmentPreset =
+  | "studio"
+  | "sunset"
+  | "park"
+  | "night"
+  | "dawn"
+  | "city"
+  | "warehouse"
+  | "apartment"
+  | "forest"
+  | "lobby";
+
+export interface EnvironmentConfig {
+  preset: EnvironmentPreset;
+  blur: number;
+  lights: LightConfig[];
+  ambientIntensity: number;
+  cameraPosition: [number, number, number];
+}

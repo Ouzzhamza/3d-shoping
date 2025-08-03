@@ -1,40 +1,46 @@
 "use client";
 
 import { useRef } from "react";
-import dynamic from "next/dynamic";
-const Scene = dynamic(() => import("../canvas/controls/Scene"), {
-  ssr: false,
-});
+import { Canvas } from "@react-three/fiber";
+import { View, Preload } from "@react-three/drei";
+// import { r3f } from "../helpers/global";
+import * as THREE from "three";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null!);
 
   return (
-    <div
-      ref={ref}
-      style={{
-        position: "relative",
-        width: " 100%",
-        height: "100%",
-        overflow: "auto",
-        touchAction: "auto",
-      }}
-    >
-      {children}
-      <Scene
+    <>
+      {/* Main container for your UI content */}
+      <div
+        ref={ref}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          overflow: "auto",
+          touchAction: "auto",
+        }}
+      >
+        {children}
+      </div>
+
+      {/* Global Canvas - renders all View components */}
+      <Canvas
         style={{
           position: "fixed",
           top: 0,
+          bottom: 0,
           left: 0,
-          width: "100vw",
-          height: "100vh",
-          pointerEvents: "none",
+          right: 0,
+          overflow: "hidden",
         }}
         eventSource={ref}
-        eventPrefix="client"
-      />
-    </div>
+      >
+        <View.Port />
+        <Preload all />
+      </Canvas>
+    </>
   );
 };
 
