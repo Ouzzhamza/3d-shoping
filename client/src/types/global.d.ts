@@ -115,11 +115,3 @@ type EnvironmentPreset =
   | "apartment"
   | "forest"
   | "lobby";
-
-export interface EnvironmentConfig {
-  preset: EnvironmentPreset;
-  blur: number;
-  lights: LightConfig[];
-  ambientIntensity: number;
-  cameraPosition: [number, number, number];
-}
