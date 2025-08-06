@@ -18,6 +18,29 @@
 
   /* --background-image-hero: url("/src/assets/bg.png"); */
   --background-image-contact: url("/src/assets/contact.png");
+
+  --animate-spin-revert: spinRevert 60s infinite linear;
+  --animate-spin-custom: spin 60s infinite linear;
+
+  @keyframes spin {
+    from {
+      transform: rotateY(0deg);
+    }
+
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+
+  @keyframes spinRevert {
+    from {
+      transform: rotateY(360deg);
+    }
+
+    to {
+      transform: rotateY(0deg);
+    }
+  }
 }
 
 /* Hide scrollbar for WebKit browsers */
@@ -27,7 +50,6 @@
 
 /* Base layer styles */
 @layer base {
-
   * {
     box-sizing: border-box;
   }
@@ -39,7 +61,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: black;
     background-image: url("../assets/bg.png");
     background-size: cover;
@@ -87,9 +109,10 @@
 }
 
 @layer utilities {
+
   
   .border-primary-2 {
-    border-width: 6px;
+    border-width: 1px;
     border-color: var(--color-primary);
   }
   /* FONTS */
@@ -273,12 +296,13 @@
   /* Active link styling */
 
   .swiper-slide {
-  height: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center;
-  align-items: center !important;
-}
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center !important;
+  }
+
   /* .mySwiper .swiper-slide {
   min-height: 250px;
 } */

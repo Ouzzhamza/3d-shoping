@@ -9,10 +9,10 @@ export default function HomePage() {
 
 
   return (
-    <div className="h-full">
+    <div className="min-h-screen relative z-10 pb-20">
       <Hero />
-      {/* <Features /> */}
-      {/* <Categories /> */}
+      <Features />
+      <Categories />
     </div>
   );
 }
