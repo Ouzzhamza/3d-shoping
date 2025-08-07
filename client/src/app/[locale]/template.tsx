@@ -4,13 +4,14 @@ import { animationPageIn } from "@/lib/utils"
 import { useEffect, useRef } from "react"
 import { setBannersRef } from "@/lib/utils";
 
-export default function template({children}: {children: React.ReactNode}) {
+export default function Template({children}: {children: React.ReactNode}) {
 
      const bannersRef = useRef<HTMLDivElement>(null);
      const contentRef = useRef<HTMLDivElement>(null);
 
      
     useEffect(() => {
+        console.log("Template mounted");
         setBannersRef(bannersRef);
         animationPageIn(bannersRef);
     }, [])

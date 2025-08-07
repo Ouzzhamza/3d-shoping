@@ -1,7 +1,7 @@
 import { ObjectProps } from "@/types/global";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 export function Tshirt({ path, onLoad, speed, ...restProps }: ObjectProps) {

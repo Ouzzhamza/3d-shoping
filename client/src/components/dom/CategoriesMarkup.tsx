@@ -3,7 +3,7 @@ import React from "react";
 import Title from "./Title";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { handleTransitionClick } from "@/lib/utils";
 
 
@@ -13,7 +13,6 @@ type ImageType = {
 };
 
 type CategoriesMarkupProps = {
-
   
   dragRef: React.RefObject<HTMLDivElement | null>;
   spinRef: React.RefObject<HTMLDivElement | null>;
@@ -41,6 +40,8 @@ const CategoriesMarkup: React.FC<CategoriesMarkupProps> = ({
 }) => {
 
     const t = useTranslations("Categories");
+     const pathname = usePathname();
+     const router = useRouter();
   
   return (
     <section className="max-padd-container mt-32 h-[400px]">
@@ -95,7 +96,7 @@ const CategoriesMarkup: React.FC<CategoriesMarkupProps> = ({
                   MozUserSelect: "none",
                 }}
                 onDragStart={(e) => e.preventDefault()}
-                onClick={() => handleTransitionClick("/collection") }
+                onClick={() => handleTransitionClick("/collection", pathname, router) }
               />
             ))}
           </div>

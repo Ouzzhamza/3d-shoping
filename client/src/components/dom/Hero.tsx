@@ -4,8 +4,6 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { View } from "@react-three/drei";
-import { Common } from "../canvas/controls/Common";
 
 const Hero3D = dynamic(
   () => import("@/components/canvas/Tshirt").then((mod) => mod.Tshirt),
@@ -15,7 +13,6 @@ const Hero3D = dynamic(
 );
 
 function Hero() {
-  const [isLoading, setIsLoading] = useState(true);
 
   const t = useTranslations("Hero");
   return (

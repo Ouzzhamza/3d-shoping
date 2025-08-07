@@ -2,8 +2,6 @@ import {  clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import gsap from "gsap";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { usePathname, useRouter } from "next/navigation";
-import { useRef } from "react";
 
 export function cn(...inputs: (string | undefined)[]) {
   return twMerge(clsx(inputs));
@@ -19,13 +17,13 @@ export function getBannersRef() {
   return bannersRef;
 }
 
-export const handleTransitionClick = (href: string) => {
-  const pathname = usePathname();
+export const handleTransitionClick = (href: string, pathname:string, router: AppRouterInstance) => {
+ 
   if (pathname === href) return;
 
   const bannersRef = getBannersRef();
   if (bannersRef) {
-    animationPageOut(href, bannersRef);
+    animationPageOut(href, bannersRef, router);
   }
 };
 
@@ -47,9 +45,8 @@ export const animationPageIn = (
 };
 
 
-export const animationPageOut = (href: string, bannersRef: React.RefObject<HTMLDivElement | null>) => {
+export const animationPageOut = (href: string, bannersRef: React.RefObject<HTMLDivElement | null>, router: AppRouterInstance) => {
   const banners = bannersRef.current?.children;
-  const router = useRouter();
   if (!banners || banners.length < 4) return;
 
   const tl = gsap.timeline();

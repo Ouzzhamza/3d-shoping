@@ -2,11 +2,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import images from "../../assets/data";
-import Title from "./Title";
 import CategoriesMarkup from "./CategoriesMarkup";
 
 function Categories() {
-  const t = useTranslations("Categories");
+  // const t = useTranslations("Categories");
 
   const dragRef = useRef<HTMLDivElement>(null);
   const spinRef = useRef<HTMLDivElement>(null);

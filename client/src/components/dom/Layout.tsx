@@ -3,8 +3,6 @@
 import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { View, Preload } from "@react-three/drei";
-// import { r3f } from "../helpers/global";
-import * as THREE from "three";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null!);

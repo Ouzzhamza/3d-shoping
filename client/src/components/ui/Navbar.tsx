@@ -6,7 +6,6 @@ import {
   MobileNavMenuProps,
   MobileNavProps,
   MobileNavToggleProps,
-  NavbarButtonProps,
   NavbarProps,
   NavBodyProps,
   NavControllersProps,
@@ -16,15 +15,12 @@ import { IconMenu2, IconX } from "@tabler/icons-react";
 import {
   motion,
   AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
 } from "motion/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import React, { ReactElement, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { FaSearch, FaShoppingBasket } from "react-icons/fa";
-import { useAuthStore } from "@/zustand/store";
 import { RiUserLine } from "react-icons/ri";
 import userImg from "../../assets/user.png";
 
@@ -73,24 +69,23 @@ export const NavItems: React.FC<NavItemsProps> = ({
   onItemClick,
 }) => {
   const [hovered, setHovered] = useState<number | null>(null);
-
   const t = useHeaderTranslations();
 
   return (
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium  transition duration-200 lg:flex lg:space-x-2",
+        "hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium transition duration-200 lg:flex lg:space-x-2",
         className
       )}
     >
       {items.map((item, idx) => (
-        <a
-          onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
-          className="relative px-4 py-2"
-          key={`link-${idx}`}
+        <Link
           href={item.link}
+          key={`link-${idx}`}
+          onClick={onItemClick}
+          onMouseEnter={() => setHovered(idx)}
+          className="relative px-4 py-2"
         >
           {hovered === idx && (
             <motion.div
@@ -101,11 +96,12 @@ export const NavItems: React.FC<NavItemsProps> = ({
           <span className="relative z-20 px-3 py-2 rounded-md uppercase text-md font-bold transition-colors duration-500 hover:bg-tertiary/50 hover:text-black">
             {t(item.name)}
           </span>
-        </a>
+        </Link>
       ))}
     </motion.div>
   );
 };
+
 
 export const MobileNav: React.FC<MobileNavProps> = ({
   children,

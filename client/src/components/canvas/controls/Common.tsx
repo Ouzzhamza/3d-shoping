@@ -1,8 +1,6 @@
 import {
-  forwardRef,
   ReactNode,
   Suspense,
-  useImperativeHandle,
   useMemo,
   useRef,
 } from "react";
@@ -10,12 +8,9 @@ import {
   Environment,
   OrbitControls,
   PerspectiveCamera,
-  View as ViewImpl,
 } from "@react-three/drei";
-import { Three } from "../helpers/Three";
 import { useFrame } from "@react-three/fiber";
 import { Group } from "three";
-import { Spinner } from "@/components/ui/Spinner";
 
 // Rotating animation (kept for optional product rotation)
 const RotatingGroup = ({

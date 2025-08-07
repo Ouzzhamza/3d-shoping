@@ -2,7 +2,7 @@ import Title from '@/components/dom/Title';
 import { useTranslations } from 'next-intl';
 import React from 'react'
 
-function page() {
+function Page() {
       const t = useTranslations("Categories");
     
   return (<section className="max-padd-container py-16 mt-24"> 
@@ -11,4 +11,4 @@ function page() {
    </section>);
 }
 
-export default page
+export default Page
