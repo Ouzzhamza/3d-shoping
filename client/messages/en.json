@@ -27,5 +27,8 @@
   },
   "Categories": {
     "Title": "Categories"
+  },
+  "PopularProducts": {
+    "Title": "Popular Products"
   }
 }

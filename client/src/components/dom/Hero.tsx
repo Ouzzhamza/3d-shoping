@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 
 const Hero3D = dynamic(
-  () => import("@/components/canvas/Tshirt").then((mod) => mod.Tshirt),
+  () => import("@/components/canvas/models/Tshirt").then((mod) => mod.Tshirt),
   {
     ssr: false,
   }
@@ -15,6 +15,7 @@ const Hero3D = dynamic(
 function Hero() {
 
   const t = useTranslations("Hero");
+  //  const [isLoading, setIsLoading] = useState(true);
   return (
     <section className="max-padd-container w-full h-screen flex flex-col md:flex-row gap-8 md:gap-0">
       {/* Text Content Section */}

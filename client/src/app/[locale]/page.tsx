@@ -3,6 +3,7 @@ import Hero from "@/components/dom/Hero";
 import "../globals.css";
 import Features from "@/components/dom/Features";
 import Categories from "@/components/dom/Categories";
+import PopularProducts from "@/components/dom/PopularProducts";
 
 export default function HomePage() {
 
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Hero />
       <Features />
       <Categories />
+      <PopularProducts/>
     </div>
   );
 }
