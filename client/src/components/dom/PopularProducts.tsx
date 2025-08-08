@@ -1,54 +1,18 @@
-"use client"
+"use client";
 
-import React from 'react'
-import Title from './Title'
-import { useTranslations } from 'next-intl';
+import React, { Suspense } from "react";
+import Title from "./Title";
+import { useTranslations } from "next-intl";
 import {
-  OrbitControls,
   View,
-  useTexture,
-  Environment,
 } from "@react-three/drei";
-import Sphere from '@/components/canvas/Sphere';
+import { Position3D } from "@/types/global";
+import Product from "@/components/canvas/Product";
+import { PopularProducts } from "@/assets/data";
 
-// Type definitions
-type Position3D = [number, number, number];
-
-interface BoxProps {
-  position?: Position3D;
-  color?: string;
-}
-
-interface ViewSceneProps {
-  boxColor: string;
-  boxPosition?: Position3D;
-}
-
-// Simple Box component
-function Box({ position = [0, 0, 0], color = "orange" }: BoxProps) {
-  return (
-    <mesh position={position}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={color} />
-    </mesh>
-  );
-}
-
-// Individual View Scene component
-function ViewScene({ boxColor, boxPosition = [0, 0, 0] }: ViewSceneProps) {
-  return (
-    <>
-    <OrbitControls />
-    <Environment preset="sunset" />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[5, 5, 5]} intensity={1} />
-      <Box position={boxPosition} color={boxColor} />
-    </>
-  );
-}
 
 export default function LineOfViews() {
-      const t = useTranslations("PopularProducts");
+  const t = useTranslations("PopularProducts");
 
   const viewData: Array<{ id: number; color: string; position: Position3D }> = [
     { id: 1, color: "#ff6b6b", position: [0, 0, 0] },
@@ -59,22 +23,28 @@ export default function LineOfViews() {
   ];
 
   return (
-    <section className="max-padd-container mt-32 h-[500px]">
+    <section className="max-padd-container mt-32">
       <div className="max-padd-container2 h-full">
         <Title title={t("Title")} titleStyle="w-fit" HeaderStyle="h2" />
 
-      {/* Container for all views */}
-      <div className="w-full h-full flex gap-4 overflow-hidden ">
-        {viewData.map((item) => (
-            <View
-            key={item.id}
-            className="flex-1 h-full overflow-hidden flex justify-center items-center border-primary-2 rounded-lg"
+        <div className="w-full h-full flex flex-col md:flex-row justify-center items-center gap-8 overflow-hidden pt-16">
+          {PopularProducts.map((product) => (
+            <Suspense
+              key={product.id}
+              fallback={
+                <div className="w-64 h-[300px] bg-gray-200 animate-pulse" />
+              }
             >
-            <ViewScene boxColor={item.color} boxPosition={item.position} />
-          </View>
-        ))}
-      </div>
+              <View
+                key={product.id}
+                className="w-64 h-[300px] overflow-hidden flex justify-center items-center border-primary-2"
+              >
+                <Product Path={product.path} />
+              </View>
+            </Suspense>
+          ))}
         </div>
+      </div>
     </section>
   );
 }

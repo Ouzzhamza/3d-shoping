@@ -42,3 +42,13 @@ export const images = [
 ];
 
 export default images;
+
+
+
+export const PopularProducts = [
+  {id: 1, path: "/Hoodie.glb"},
+  {id: 2, path: "/Robe2-1.glb"},
+  {id: 3, path: "/Kids.glb"},
+  {id: 4, path: "/Shoe1-2.glb"},
+  {id: 5, path: "/jersey2.glb"},
+]

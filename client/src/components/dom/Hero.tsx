@@ -60,13 +60,7 @@ function Hero() {
               height: "100%",
             }}
           >
-            <Hero3D
-              scale={2}
-              position={[0, 0, 0]}
-              path="/Tshirt.glb"
-              onLoad={() => setIsLoading(false)}
-              speed={0.2}
-            />
+          c
             <Common
               enableOrbitControls={true}
               enableZoom={false}

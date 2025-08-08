@@ -115,3 +115,12 @@ type EnvironmentPreset =
   | "apartment"
   | "forest"
   | "lobby";
+
+
+  export type Position3D = [number, number, number];
+
+
+  export interface ViewSceneProps {
+    boxColor: string;
+    ProductPosition?: Position3D;
+  }
