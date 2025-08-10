@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import images from "../../assets/data";
+import images from "../../../public/data";
 import CategoriesMarkup from "./CategoriesMarkup";
 
 function Categories() {
@@ -135,7 +135,6 @@ function Categories() {
 
   return (
     <CategoriesMarkup
-      
       dragRef={dragRef}
       spinRef={spinRef}
       groundRef={groundRef}

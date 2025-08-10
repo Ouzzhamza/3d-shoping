@@ -6,6 +6,7 @@ import { Header } from "@/components/dom/Header";
 import "../globals.css";
 import { ReactNode } from "react";
 import { Layout } from "@/components/dom/Layout";
+import Footer from "@/components/dom/Footer";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -27,8 +28,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
+      <div>
       <Header />
       <Layout>{children}</Layout>
+      </div>
+      <Footer/>
     </NextIntlClientProvider>
   );
 }

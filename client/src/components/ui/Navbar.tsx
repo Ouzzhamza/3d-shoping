@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, handleTransitionClick } from "@/lib/utils";
 import {
   MobileNavHeaderProps,
   MobileNavMenuProps,
@@ -22,7 +22,8 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { FaSearch, FaShoppingBasket } from "react-icons/fa";
 import { RiUserLine } from "react-icons/ri";
-import userImg from "../../assets/user.png";
+import userImg from "/public/images/user.png";
+import { usePathname, useRouter } from "next/navigation";
 
 
 export const useHeaderTranslations = () => {
@@ -66,10 +67,16 @@ export const NavBody: React.FC<NavBodyProps> = ({
 export const NavItems: React.FC<NavItemsProps> = ({
   items,
   className,
-  onItemClick,
 }) => {
   const [hovered, setHovered] = useState<number | null>(null);
+
   const t = useHeaderTranslations();
+
+    const pathname = usePathname();
+    const router = useRouter();
+    const onItemClick = (path: string) => {
+      handleTransitionClick(path, pathname, router);
+    };
 
   return (
     <motion.div
@@ -83,7 +90,7 @@ export const NavItems: React.FC<NavItemsProps> = ({
         <Link
           href={item.link}
           key={`link-${idx}`}
-          onClick={onItemClick}
+          onClick={() => onItemClick(item.link)}
           onMouseEnter={() => setHovered(idx)}
           className="relative px-4 py-2"
         >

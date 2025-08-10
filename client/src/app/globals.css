@@ -17,7 +17,7 @@
   --font-family-display: "Pacifico", "cursive", serif;
 
   /* --background-image-hero: url("/src/assets/bg.png"); */
-  --background-image-contact: url("/src/assets/contact.png");
+  --background-image-contact: url("/images/contact.png");
 
   --animate-spin-revert: spinRevert 60s infinite linear;
   --animate-spin-custom: spin 60s infinite linear;
@@ -74,7 +74,7 @@
     padding: 0;
     /* overflow: hidden; */
     background-color: black;
-    background-image: url("../assets/bg.png");
+    background-image: url("/images/bg.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

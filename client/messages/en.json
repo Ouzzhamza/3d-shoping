@@ -30,5 +30,33 @@
   },
   "PopularProducts": {
     "Title": "Popular Products"
+  },
+  "Blog": {
+    "Title": "Our expert",
+    "ContinueReading": "Continue Reading"
+  },
+  "Footer": {
+    "Discover": "Discover the latest trends and exclusive deals. Your one-stop destination for premium quality products at unbeatable prices.",
+    "Shop": "Shop",
+    "Support": "Support",
+    "Company": "Company",
+    "NewArrivals": "New Arrivals",
+    "BestSellers": "Best Sellers",
+    "SaleItems": "Sale Items",
+    "GiftCards": "Gift Cards",
+    "Collections": "Collections",
+    "Brands": "Brands",
+    "HelpCenter": "Help Center",
+    "TrackOrder": "Track Order",
+    "Returns": "Returns",
+    "Exchanges": "Exchanges",
+    "SizeGuide": "Size Guide",
+    "ContactUs": "Contact Us",
+    "AboutUs": "About Us",
+    "Careers": "Careers",
+    "Press": "Press",
+    "Sustainability": "Sustainability",
+    "Affiliates": "Affiliates",
+    "Wholesale": "Wholesale"
   }
 }

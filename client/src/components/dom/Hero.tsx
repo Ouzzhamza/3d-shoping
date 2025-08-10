@@ -4,13 +4,10 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
+import { View } from "@react-three/drei";
+import Hero3D from "../canvas/Hero3D";
 
-const Hero3D = dynamic(
-  () => import("@/components/canvas/models/Model3D").then((mod) => mod.Tshirt),
-  {
-    ssr: false,
-  }
-);
+
 
 function Hero() {
   const t = useTranslations("Hero");
@@ -53,19 +50,14 @@ function Hero() {
       {/* Video/Content Section */}
       <div className="relative flex flex-col justify-center items-center w-full md:w-1/2 h-1/2 md:h-full ">
         <div className="relative w-full h-full  bg-transparent flex justify-center items-center">
-          {/* <View
+          <View
             style={{
               width: "100%",
               height: "100%",
             }}
           >
-          
-            <Common
-              enableOrbitControls={true}
-              enableZoom={false}
-              lockVerticalOrbit={true}
-            />
-          </View> */}
+            <Hero3D/>
+          </View>
         </div>
       </div>
     </section>
