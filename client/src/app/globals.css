@@ -21,6 +21,17 @@
 
   --animate-spin-revert: spinRevert 60s infinite linear;
   --animate-spin-custom: spin 60s infinite linear;
+  --animate-spin-z: spin-z 1.5s infinite linear;
+
+  @keyframes spin-z {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
 
   @keyframes spin {
     from {

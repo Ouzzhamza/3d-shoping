@@ -1,86 +1,132 @@
+"use client";
+
+import React, { Suspense, useState } from "react";
 import {
   OrbitControls,
-  Environment,
   useTexture,
+  Environment,
   PerspectiveCamera,
-  Float,
   ContactShadows,
+  Html,
 } from "@react-three/drei";
-import * as Three from "three";
-import { useMemo, useState } from "react";
-import { Tshirt } from "./models/Tshirt";
+
 import dynamic from "next/dynamic";
-import { ViewSceneProps } from "@/types/global";
 import * as THREE from "three";
 import { LayerMaterial, Depth, Noise } from "lamina";
+import { Spinner3D } from "./Spinner3D";
+import { selector } from "gsap";
 
-
-const Hero3D = dynamic(
-  () => import("@/components/canvas/models/Tshirt").then((mod) => mod.Tshirt),
+// Dynamic import for T-shirt component
+const Model3D = dynamic(
+  () => import("@/components/canvas/models/Model3D").then((mod) => mod.Model3D),
   {
     ssr: false,
+    loading: () => <Spinner3D size={50} />,
   }
 );
 
-interface ProductProps {
-  Path: string;
+interface ColorOption {
+  id: string;
+  name: string;
+  color: string;
+  path?: string;
 }
 
-function Product({ Path }: ProductProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const map = useTexture("/textures/texture3.png");
+interface ProductProps {
+  id: number;
+  name: string;
+  price: string;
+  originalPrice: string;
+  path: string;
+  sizes: string[];
+  colors: ColorOption[];
+}
+
+function Product({ path, name, price, colors }: ProductProps) {
+
+  const [selectedColor, setSelectedColor] = useState<ColorOption>(colors[0]);
+
+   const [currentPath, setCurrentPath] = useState(() => {
+     return colors[0]?.path || path;
+   });
+
+  const handleColorChange = (color: ColorOption) => {
+    setSelectedColor(color);
+       const newPath = color.path || path;
+       setCurrentPath(newPath);
+  }
 
   return (
-    <>
-      {/* <PerspectiveCamera makeDefault position={[0, 0, 6]} /> */}
-      <OrbitControls
-        autoRotate
-        minPolarAngle={Math.PI / 2}
-        maxPolarAngle={Math.PI / 2}
-      />
-      <pointLight position={[10, 10, 5]} />
-      <pointLight position={[-10, -10, -5]} />
-      <Environment preset="night" background map={map} />
-      <directionalLight position={[5, 5, 5]} intensity={1} />
-      <ambientLight intensity={0.4} />
-      <group>
-        {/* <Float
-          position={[0, 0, 0]}
-          speed={2}
-          rotationIntensity={2}
-          floatIntensity={2}
-        > */}
-          <Hero3D
-            scale={2}
-            position={[0, 0, 0]}
-            path={Path}
-            onLoad={() => setIsLoading(false)}
-            speed={0.2}
-          />
-        {/* </Float> */}
-        <ContactShadows scale={10} blur={3} opacity={0.25} far={10} />
-      </group>
-      <Environment background resolution={64}>
-        {/* <Striplight position={[10, 2, 0]} scale={[1, 3, 10]} /> */}
-        {/* <Striplight position={[-10, 2, 0]} scale={[1, 3, 10]} /> */}
-        <mesh scale={100}>
-          <sphereGeometry args={[1, 64, 64]} />
-          <LayerMaterial side={THREE.BackSide}>
-            <Depth color="blue" alpha={0.5} mode="multiply" />
-            <Depth
-              colorA="#ff0000"
-              colorB="#00aaff"
-              alpha={0.5}
-              mode="normal"
-              near={0}
-              far={300}
-              origin={[100, 100, 100]}
-            />
-            <Noise mapping="local" type="cell" scale={0.5} mode="softlight" />
-          </LayerMaterial>
-        </mesh>
-      </Environment>
-    </>
+    <group>
+      <Suspense fallback={<Spinner3D size={50} />}>
+        <PerspectiveCamera makeDefault position={[0, 0, 6]} />
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          autoRotate
+          autoRotateSpeed={3}
+          minPolarAngle={Math.PI / 2}
+          maxPolarAngle={Math.PI / 2}
+          enableDamping={true}
+          dampingFactor={0.05}
+        />
+
+        <pointLight position={[0, 0, 2]} intensity={5} color="#ffffff" />
+        <pointLight position={[0, 0, -2]} intensity={5} color="#ffffff" />
+        <directionalLight position={[5, 5, 5]} intensity={1} color="#ffffff" />
+        <ambientLight intensity={0.4} />
+        <Model3D scale={3} position={[0, 0, 0]} path={currentPath} speed={0} />
+        <Environment background resolution={64} preset="city">
+          <mesh scale={100}>
+            <sphereGeometry args={[1, 64, 64]} />
+            <LayerMaterial side={THREE.BackSide} lighting="physical">
+              <Depth color="black" alpha={0.9} mode="normal" />
+              <Depth
+                colorA="#c9b037"
+                alpha={0.5}
+                mode="normal"
+                near={0}
+                far={300}
+                origin={[100, 100, 100]}
+              />
+              <Noise mapping="local" type="cell" scale={0.5} mode="softlight" />
+            </LayerMaterial>
+          </mesh>
+        </Environment>
+      </Suspense>
+      <Html fullscreen className="pointer-events-none">
+        <div className="w-full h-full flex flex-col">
+          <div className="flex-1 flex items-start justify-between p-4">
+            <h4 className="h4 bold-15 line-clamp-1 bg-black/50 text-white px-3 py-1 rounded-full">
+              {name}
+            </h4>
+          </div>
+          <div className="flex-1 flex items-end justify-between p-4">
+            <div className="flex gap-2 pointer-events-auto">
+              {colors.map((color) => (
+                <button
+                  key={color.id}
+                  onClick={() => handleColorChange(color)}
+                  className={`w-6 h-6 rounded-full border-2 transition-all duration-200 relative group ${
+                    selectedColor.id === color.id
+                      ? "border-gray-800 scale-110"
+                      : "border-gray-300 hover:border-gray-500 hover:scale-105"
+                  }`}
+                  style={{ backgroundColor: color.color }}
+                >
+                  {selectedColor.id === color.id && (
+                    <div className="absolute inset-0 rounded-full border-2 border-white shadow-inner"></div>
+                  )}
+                </button>
+              ))}
+            </div>
+            <div className="bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+              {price}
+            </div>
+          </div>
+        </div>
+      </Html>
+    </group>
   );
 }
 

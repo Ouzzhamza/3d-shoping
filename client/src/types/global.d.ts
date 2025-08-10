@@ -80,9 +80,9 @@ export type NavControllersProps = {
 };
 
 export type ObjectProps = GroupProps & {
-  onLoad: () => void;
+  // onLoad: () => void;
   path: string;
-  speed: Float;
+  // speed: Float;
 };
 
 

@@ -6,14 +6,13 @@ import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 
 const Hero3D = dynamic(
-  () => import("@/components/canvas/models/Tshirt").then((mod) => mod.Tshirt),
+  () => import("@/components/canvas/models/Model3D").then((mod) => mod.Tshirt),
   {
     ssr: false,
   }
 );
 
 function Hero() {
-
   const t = useTranslations("Hero");
   //  const [isLoading, setIsLoading] = useState(true);
   return (
@@ -60,7 +59,7 @@ function Hero() {
               height: "100%",
             }}
           >
-          c
+          
             <Common
               enableOrbitControls={true}
               enableZoom={false}

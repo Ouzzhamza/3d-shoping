@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import Title from "./Title";
 import { useTranslations } from "next-intl";
 import {
+  Html,
   View,
 } from "@react-three/drei";
 import { Position3D } from "@/types/global";
@@ -12,15 +13,8 @@ import { PopularProducts } from "@/assets/data";
 
 
 export default function LineOfViews() {
-  const t = useTranslations("PopularProducts");
 
-  const viewData: Array<{ id: number; color: string; position: Position3D }> = [
-    { id: 1, color: "#ff6b6b", position: [0, 0, 0] },
-    { id: 2, color: "#4ecdc4", position: [0, 0, 0] },
-    { id: 3, color: "#45b7d1", position: [0, 0, 0] },
-    { id: 4, color: "#96ceb4", position: [0, 0, 0] },
-    { id: 5, color: "#feca57", position: [0, 0, 0] },
-  ];
+  const t = useTranslations("PopularProducts");
 
   return (
     <section className="max-padd-container mt-32">
@@ -29,19 +23,12 @@ export default function LineOfViews() {
 
         <div className="w-full h-full flex flex-col md:flex-row justify-center items-center gap-8 overflow-hidden pt-16">
           {PopularProducts.map((product) => (
-            <Suspense
-              key={product.id}
-              fallback={
-                <div className="w-64 h-[300px] bg-gray-200 animate-pulse" />
-              }
-            >
               <View
                 key={product.id}
-                className="w-64 h-[300px] overflow-hidden flex justify-center items-center border-primary-2"
+                className="relative w-[350px] h-[400px] overflow-hidden"
               >
-                <Product Path={product.path} />
+                <Product {...product} />
               </View>
-            </Suspense>
           ))}
         </div>
       </div>
