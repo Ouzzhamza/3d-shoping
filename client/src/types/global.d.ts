@@ -124,3 +124,21 @@ type EnvironmentPreset =
     boxColor: string;
     ProductPosition?: Position3D;
   }
+
+
+  export interface ColorOption {
+    id: string;
+    name: string;
+    color: string;
+    path?: string;
+  }
+
+  export interface ProductsType {
+    id: number;
+    name: string;
+    price: string;
+    originalPrice: string;
+    path: string;
+    sizes: string[];
+    colors: ColorOption[];
+  }

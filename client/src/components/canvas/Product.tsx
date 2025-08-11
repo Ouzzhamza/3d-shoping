@@ -15,6 +15,7 @@ import * as THREE from "three";
 import { LayerMaterial, Depth, Noise } from "lamina";
 import { Spinner3D } from "./Spinner3D";
 import { selector } from "gsap";
+import { ColorOption, ProductsType } from "@/types/global";
 
 // Dynamic import for T-shirt component
 const Model3D = dynamic(
@@ -25,36 +26,20 @@ const Model3D = dynamic(
   }
 );
 
-interface ColorOption {
-  id: string;
-  name: string;
-  color: string;
-  path?: string;
-}
 
-interface ProductProps {
-  id: number;
-  name: string;
-  price: string;
-  originalPrice: string;
-  path: string;
-  sizes: string[];
-  colors: ColorOption[];
-}
 
-function Product({ path, name, price, colors }: ProductProps) {
-
+function Product({ path, name, price, colors }: ProductsType) {
   const [selectedColor, setSelectedColor] = useState<ColorOption>(colors[0]);
 
-   const [currentPath, setCurrentPath] = useState(() => {
-     return colors[0]?.path || path;
-   });
+  const [currentPath, setCurrentPath] = useState(() => {
+    return colors[0]?.path || path;
+  });
 
   const handleColorChange = (color: ColorOption) => {
     setSelectedColor(color);
-       const newPath = color.path || path;
-       setCurrentPath(newPath);
-  }
+    const newPath = color.path || path;
+    setCurrentPath(newPath);
+  };
 
   return (
     <group>
