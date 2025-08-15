@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
 import images from "../../../public/data";
 import CategoriesMarkup from "./CategoriesMarkup";
 
@@ -95,7 +94,7 @@ function Categories() {
   };
 
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     wheelVelocity.current = e.deltaY * -0.5;
 

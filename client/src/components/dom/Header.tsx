@@ -15,8 +15,7 @@ import { useAuthStore } from "@/zustand/store";
 import { useState } from "react";
 
 import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+
 
 export function Header() {
 

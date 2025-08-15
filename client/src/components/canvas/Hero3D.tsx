@@ -1,21 +1,17 @@
 "use client";
 
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import {
   OrbitControls,
-  useTexture,
+
   Environment,
   PerspectiveCamera,
-  ContactShadows,
-  Html,
-  Float,
+
 } from "@react-three/drei";
 
 import dynamic from "next/dynamic";
-import * as THREE from "three";
-import { LayerMaterial, Depth, Noise } from "lamina";
+
 import { Spinner3D } from "./Spinner3D";
-import { selector } from "gsap";
 
 // Dynamic import for T-shirt component
 const Model3D = dynamic(
@@ -26,22 +22,22 @@ const Model3D = dynamic(
   }
 );
 
-interface ColorOption {
-  id: string;
-  name: string;
-  color: string;
-  path?: string;
-}
+// interface ColorOption {
+//   id: string;
+//   name: string;
+//   color: string;
+//   path?: string;
+// }
 
-interface ProductProps {
-  id: number;
-  name: string;
-  price: string;
-  originalPrice: string;
-  path: string;
-  sizes: string[];
-  colors: ColorOption[];
-}
+// interface ProductProps {
+//   id: number;
+//   name: string;
+//   price: string;
+//   originalPrice: string;
+//   path: string;
+//   sizes: string[];
+//   colors: ColorOption[];
+// }
 
 function Hero3D() {
 

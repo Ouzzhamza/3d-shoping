@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { useTranslations } from "next-intl";
-import dynamic from "next/dynamic";
 import { View } from "@react-three/drei";
 import Hero3D from "../canvas/Hero3D";
 

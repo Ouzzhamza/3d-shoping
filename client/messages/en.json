@@ -58,5 +58,10 @@
     "Sustainability": "Sustainability",
     "Affiliates": "Affiliates",
     "Wholesale": "Wholesale"
+  },
+  "Pagination": {
+    "Previous": "Previous",
+    "Next": "Next",
+    "goToPage": "Go to page:"
   }
 }

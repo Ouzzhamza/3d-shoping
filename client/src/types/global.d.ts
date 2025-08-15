@@ -1,7 +1,6 @@
 // types/global.d.ts
 import type { ReactNode } from "react";
 import { GroupProps } from "@react-three/fiber";
-import { Float } from '@react-three/drei';
 
 
 declare global {
@@ -82,6 +81,9 @@ export type NavControllersProps = {
 export type ObjectProps = GroupProps & {
   // onLoad: () => void;
   path: string;
+  productId?: number;
+  onProgress?: (productId: number, progress: number) => void;
+  onError?: (productId: number, error: string) => void;
   // speed: Float;
 };
 
@@ -137,8 +139,28 @@ type EnvironmentPreset =
     id: number;
     name: string;
     price: string;
+    productImg: string;
     originalPrice: string;
     path: string;
     sizes: string[];
     colors: ColorOption[];
   }
+
+  export type ProductProps = {
+    product: ProductsType;
+  };
+
+
+  export type ProductDetailsProps = {
+    product: ProductsType;
+    setCurrentPath?: (path: string) => void;
+  };
+
+
+  export type LoaderProps = {
+    id: number;
+    productImg: string;
+    progresse?: number;
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
+  };

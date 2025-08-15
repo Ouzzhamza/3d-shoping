@@ -1,23 +1,43 @@
-"use client"
+"use client";
 
 import { ObjectProps } from "@/types/global";
 import { useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
-import * as THREE from "three";
-import { Spinner3D } from "../Spinner3D";
+import { useMemo, useEffect } from "react";
+import { SkeletonUtils } from "three-stdlib";
+import { useThree } from "@react-three/fiber";
 
-export function Model3D({ path, ...restProps }: ObjectProps) {
 
-  const ref = useRef<THREE.Group>(null);
-  const { scene } = useGLTF(path, true);
+export function Model3D({
+  path,
+  productId,
+  onProgress,
+  onError,
+  ...Props
+}: ObjectProps) {
+  // Custom progress tracking
+  const { scene, materials, nodes } = useGLTF(path, true, true, (loader) => {
+    if (productId && onProgress) {
+      loader.manager.onProgress = (url, itemsLoaded, itemsTotal) => {
+        const progress = (itemsLoaded / itemsTotal) * 100;
+        onProgress(productId, progress);
+      };
 
-  // return scene ? (
-  //   <primitive object={scene} {...restProps} ref={ref} />
-  // ) : (
-  //   <Spinner3D size={45} />
-  // );
+      loader.manager.onError = (url) => {
+        if (onError) {
+          onError(productId, `Failed to load: ${url}`);
+        }
+      };
+    }
+  });
 
-  return <primitive object={scene} {...restProps} ref={ref} />;
+  const clonedScene = useMemo(() => SkeletonUtils.clone(scene), [scene]);
+
+  // Notify when loading is complete
+  useEffect(() => {
+    if (productId && onProgress && scene) {
+      onProgress(productId, 100);
+    }
+  }, [scene, productId, onProgress]);
+
+  return <primitive object={clonedScene} {...Props} />;
 }
-
