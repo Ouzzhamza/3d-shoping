@@ -1,6 +1,6 @@
 "use client"
 
-import { ColorOption, ProductDetailsProps, ProductProps, ProductsType } from '@/types/global'
+import { ColorOption, ProductDetailsProps,  } from '@/types/global'
 import { Html } from '@react-three/drei';
 import React, { useState } from 'react'
 
@@ -20,7 +20,7 @@ function ProductDetails({ product, setCurrentPath }: ProductDetailsProps) {
   };
 
   return (
-    <div className="absolute inset-0 flex flex-col bg-opacity-50 z-30 pointer-events-none">
+    <Html fullscreen className="absolute inset-0 flex flex-col bg-opacity-50 z-30 pointer-events-none ">
       <div className="w-full h-full flex flex-col">
         <div className="flex-1 flex items-start justify-between p-4">
           <h4 className="h4 bold-15 line-clamp-1 bg-black/50 text-white px-3 py-1 rounded-full">
@@ -51,7 +51,7 @@ function ProductDetails({ product, setCurrentPath }: ProductDetailsProps) {
           </div>
         </div>
       </div>
-    </div>
+    </Html>
   );
 }
 

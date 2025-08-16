@@ -1,7 +1,9 @@
 "use client";
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import dynamic from "next/dynamic";
 import { Spinner3D } from "./Spinner3D";
+import ProductDetails from "./ProductDetails";
+import { ProductsType } from "@/types/global";
 
 const Model3D = dynamic(
   () => import("@/components/canvas/models/Model3D").then((mod) => mod.Model3D),
@@ -23,35 +25,41 @@ const CommonScene = dynamic(
 );
 
 interface ProductProps {
-  currentPath: string;
-  productId: number;
-  onProgress: (productId: number, progress: number) => void;
-  onError: (productId: number, error: string) => void;
+  // onProgress: (productId: number, progress: number) => void;
+  // onError: (productId: number, error: string) => void;
+  product: ProductsType;
 }
 
 function Product({
-  currentPath,
-  productId,
-  onProgress,
-  onError,
+
+  product,
 }: ProductProps) {
+
+
+  const [currentPath, setCurrentPath] = useState<string>(product.path);
+
+  const handleSetCurrentPath = (path: string) => {
+    // Since currentPath is a string (single path), update it directly
+    setCurrentPath(path);
+  };
+  
   return (
-    <group>
-      {/* <Suspense fallback={<Spinner3D size={50} />}> */}
-        <CommonScene />
-        <Model3D
-          castShadow
-          receiveShadow
-          scale={3}
-          position={[0, 0, 0]}
-          path={currentPath}
-          speed={0}
-          productId={productId}
-          onProgress={onProgress}
-          onError={onError}
-        />
-      {/* </Suspense> */}
-    </group>
+    <Suspense fallback={<Spinner3D size={50} />}>
+      <CommonScene />
+      <Model3D
+        castShadow
+        receiveShadow
+        scale={3}
+        position={[0, 0, 0]}
+        path={currentPath}
+        speed={0}
+        productId={product.id}
+      />
+      <ProductDetails
+        product={product}
+        setCurrentPath={(path) => handleSetCurrentPath(path)}
+      />
+    </Suspense>
   );
 }
 

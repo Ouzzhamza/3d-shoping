@@ -82,8 +82,8 @@ export type ObjectProps = GroupProps & {
   // onLoad: () => void;
   path: string;
   productId?: number;
-  onProgress?: (productId: number, progress: number) => void;
-  onError?: (productId: number, error: string) => void;
+  // onProgress?: (productId: number, progress: number) => void;
+  // onError?: (productId: number, error: string) => void;
   // speed: Float;
 };
 
@@ -164,3 +164,9 @@ type EnvironmentPreset =
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
   };
+
+
+  export interface IconSwitcherProps {
+    toggleRenderType: () => void;
+    renderType: boolean;
+  }

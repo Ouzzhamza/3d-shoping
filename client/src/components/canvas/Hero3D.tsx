@@ -42,7 +42,6 @@ const Model3D = dynamic(
 function Hero3D() {
 
   return (
-    <group>
       <Suspense fallback={<Spinner3D size={50} />}>
         <PerspectiveCamera makeDefault position={[0, 0, 6]} />
         <OrbitControls
@@ -68,7 +67,6 @@ function Hero3D() {
         />
         <Environment resolution={64} preset="night" />
       </Suspense>
-    </group>
   );
 }
 
