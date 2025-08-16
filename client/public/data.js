@@ -97,7 +97,7 @@ export const PopularProductsMap = [
   },
   {
     id: 4,
-    name: "Sporty Shoes",
+    name: "Air Shoes",
     price: "$149.99",
     originalPrice: "$179.99",
     path: "/glbs/Shoe1-2.glb",
@@ -172,7 +172,7 @@ export const Products = [
         id: "red",
         name: "Cherry Red",
         color: "#ef4444",
-        path: "/glbs/Tshirt1-2.glb",
+        path: "/glbs/Tshirt1-3.glb",
       },
     ],
   },
@@ -204,26 +204,7 @@ export const Products = [
     path: "/glbs/Tshirt4-1.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Tshirt4.webp",
-    colors: [
-      {
-        id: "blue",
-        name: "Deep Blue",
-        color: "#2563eb",
-        path: "/glbs/Tshirt4-1.glb",
-      },
-      {
-        id: "black",
-        name: "Blackout",
-        color: "#000000",
-        path: "/glbs/Tshirt4-2.glb",
-      },
-      {
-        id: "green",
-        name: "Emerald",
-        color: "#22c55e",
-        path: "/glbs/Tshirt4-3.glb",
-      },
-    ],
+    colors: [],
   },
   {
     id: 6,
@@ -259,8 +240,8 @@ export const Products = [
       {
         id: "gray",
         name: "Steel Gray",
-        color: "#6b7280",
-        path: "/glbs/gray-3.glb",
+        color: "#33363d",
+        path: "/glbs/Hoodie2-3.glb",
       },
     ],
   },
@@ -384,7 +365,7 @@ export const Products = [
   },
   {
     id: 14,
-    name: "Running Shoes 1",
+    name: "Air shoes",
     price: "$139.99",
     originalPrice: "$169.99",
     path: "/glbs/Shoe1-1.glb",
@@ -413,7 +394,7 @@ export const Products = [
   },
   {
     id: 15,
-    name: "Running Shoes 2",
+    name: "Wing Tip Boots",
     price: "$149.99",
     originalPrice: "$179.99",
     path: "/glbs/Shoe2-1.glb",
@@ -469,7 +450,7 @@ export const Products = [
   },
   {
     id: 18,
-    name: "Jogging",
+    name: "Jogging dress",
     price: "$54.99",
     originalPrice: "$74.99",
     path: "/glbs/Jogging.glb",
@@ -524,7 +505,7 @@ export const Products = [
   },
   {
     id: 21,
-    name: "Casual Hat",
+    name: "Cattleman",
     price: "$24.99",
     originalPrice: "$34.99",
     path: "/glbs/Hat3-1.glb",
@@ -553,7 +534,7 @@ export const Products = [
   },
   {
     id: 22,
-    name: "Casual Hat",
+    name: "Brick",
     price: "$24.99",
     originalPrice: "$34.99",
     path: "/glbs/Hat4.glb",
@@ -563,7 +544,7 @@ export const Products = [
   },
   {
     id: 23,
-    name: "Casual Hat",
+    name: "Gabmbler",
     price: "$24.99",
     originalPrice: "$34.99",
     path: "/glbs/Hat5.glb",
@@ -573,7 +554,7 @@ export const Products = [
   },
   {
     id: 24,
-    name: "Casual Hat",
+    name: "Cuffled Beanies",
     price: "$24.99",
     originalPrice: "$34.99",
     path: "/glbs/Hat6.glb",
@@ -583,7 +564,7 @@ export const Products = [
   },
   {
     id: 25,
-    name: "Glasses",
+    name: "Glasses 1",
     price: "$49.99",
     originalPrice: "$59.99",
     path: "/glbs/glasses1.glb",
@@ -593,7 +574,7 @@ export const Products = [
   },
   {
     id: 26,
-    name: "Glasses",
+    name: "Glasses 2",
     price: "$49.99",
     originalPrice: "$59.99",
     path: "/glbs/glasses2.glb",
@@ -603,7 +584,7 @@ export const Products = [
   },
   {
     id: 27,
-    name: "Glasses",
+    name: "Glasses 3",
     price: "$49.99",
     originalPrice: "$59.99",
     path: "/glbs/glasses3.glb",
@@ -613,7 +594,7 @@ export const Products = [
   },
   {
     id: 28,
-    name: "Glasses",
+    name: "Glasses 4",
     price: "$49.99",
     originalPrice: "$59.99",
     path: "/glbs/glasses4.glb",
@@ -623,7 +604,7 @@ export const Products = [
   },
   {
     id: 29,
-    name: "Glasses",
+    name: "Glasses 5",
     price: "$49.99",
     originalPrice: "$59.99",
     path: "/glbs/glasses5.glb",
@@ -633,7 +614,7 @@ export const Products = [
   },
   {
     id: 30,
-    name: "Glasses",
+    name: "Glasses 6",
     price: "$49.99",
     originalPrice: "$59.99",
     path: "/glbs/glasses6.glb",
@@ -653,7 +634,7 @@ export const Products = [
   },
   {
     id: 32,
-    name: "Elegant Handbag",
+    name: "Handbag",
     price: "$199.99",
     originalPrice: "$249.99",
     path: "/glbs/Handbag.glb",
@@ -663,7 +644,7 @@ export const Products = [
   },
   {
     id: 33,
-    name: "Sports Jersey",
+    name: "Jersey",
     price: "$49.99",
     originalPrice: "$59.99",
     path: "/glbs/jersey.glb",
@@ -673,7 +654,7 @@ export const Products = [
   },
   {
     id: 34,
-    name: "Fancy Robe",
+    name: "Pleated Skirt",
     price: "$119.99",
     originalPrice: "$139.99",
     path: "/glbs/Robe1-1.glb",
@@ -692,7 +673,7 @@ export const Products = [
   },
   {
     id: 35,
-    name: "Fancy Robe",
+    name: "Gathered Skirt",
     price: "$129.99",
     originalPrice: "$149.99",
     path: "/glbs/Robe2-1.glb",
@@ -727,7 +708,7 @@ export const Products = [
   },
   {
     id: 36,
-    name: "Elegant Skirt",
+    name: "Pleated Skirt",
     price: "$89.99",
     originalPrice: "$109.99",
     path: "/glbs/Skirt1.glb",
@@ -737,7 +718,7 @@ export const Products = [
   },
   {
     id: 37,
-    name: "Elegant Skirt",
+    name: "Denim Skirt",
     price: "$89.99",
     originalPrice: "$109.99",
     path: "/glbs/Skirt2.glb",
@@ -767,7 +748,7 @@ export const Products = [
   },
   {
     id: 40,
-    name: "T-shirt",
+    name: "Women T-shirt",
     price: "$29.99",
     originalPrice: "$39.99",
     path: "/glbs/Tshirt6.glb",
@@ -794,4 +775,49 @@ export const blogs = [
     category: "Winterwear",
     image: blog4,
   },
+  
 ];
+
+
+export const testimonials = [
+  {
+    name: "Amina El Idrissi",
+    date: "2025-07-12",
+    message:
+      "This product exceeded my expectations. The customer support was fantastic!",
+    image: "https://randomuser.me/api/portraits/women/45.jpg",
+  },
+  {
+    name: "Youssef Benali",
+    date: "2025-06-28",
+    message: "Super fast delivery and excellent quality. Highly recommended!",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+  },
+  {
+    name: "Salma Raji",
+    date: "2025-05-14",
+    message:
+      "I’ve tried many similar services, but this one really stands out.",
+    image: "https://randomuser.me/api/portraits/women/65.jpg",
+  },
+  {
+    name: "Hicham Bakkali",
+    date: "2025-07-01",
+    message: "Easy to use, great design, and affordable. Will use again!",
+    image: "https://randomuser.me/api/portraits/men/14.jpg",
+  },
+  {
+    name: "Fatima Zahra O.",
+    date: "2025-06-10",
+    message:
+      "Everything worked smoothly from start to finish. Impressive experience!",
+    image: "https://randomuser.me/api/portraits/women/22.jpg",
+  },
+  {
+    name: "Omar Driouch",
+    date: "2025-07-15",
+    message: "Simple, clean, and effective. A game-changer for my workflow.",
+    image: "https://randomuser.me/api/portraits/men/52.jpg",
+  },
+];
+

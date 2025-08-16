@@ -19,6 +19,7 @@ export function getBannersRef() {
 
 export const handleTransitionClick = (href: string, pathname:string, router: AppRouterInstance) => {
  
+  console.log(pathname, href);
   if (pathname === href) return;
 
   const bannersRef = getBannersRef();

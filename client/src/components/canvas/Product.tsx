@@ -15,9 +15,7 @@ const Model3D = dynamic(
 
 const CommonScene = dynamic(
   () =>
-    import("@/components/canvas/controls/Common").then(
-      (mod) => mod.CommonScene
-    ),
+    import("@/components/canvas/controls/Common").then((mod) => mod.CommonScene),
   {
     ssr: true,
     // loading: () => <Spinner3D size={50} />,

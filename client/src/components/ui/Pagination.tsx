@@ -112,12 +112,12 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <div className={`flex flex-col items-center space-y-4 pt-14 ${className}`}>
       {/* Pagination controls */}
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-9">
         {/* Previous button */}
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="w-[90px] px-3 py-2 text-sm bg-tertiary/30 text-primary-deep rounded-md hover:bg-tertiary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="btn-dark bold-16 flexCenter gap-x-2 !rounded-full"
         >
           {t("Previous")}
         </button>
@@ -127,12 +127,12 @@ const Pagination: React.FC<PaginationProps> = ({
           <>
             <button
               onClick={() => onPageChange(1)}
-              className="px-3 py-2 text-sm bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors"
+              className="text-primary bold-16 cursor-pointer"
             >
               1
             </button>
             {visiblePages[0] > 2 && (
-              <span className="px-2 py-2 text-gray-500">...</span>
+              <span className="px-2 py-2 text-light text-primary">...</span>
             )}
           </>
         )}
@@ -142,10 +142,10 @@ const Pagination: React.FC<PaginationProps> = ({
           <button
             key={page}
             onClick={() => onPageChange(page)}
-            className={`px-3 py-2 text-sm rounded-md transition-colors ${
+            className={`px-3 py-2 rounded-md transition-colors cursor-pointer ${
               currentPage === page
-                ? "bg-tertiary text-white"
-                : "bg-tertiary/20 text-primary-deep hover:bg-tertiary"
+                ? " text-white px-2 py-[4px] border-[1px] border-primary backdrop-blur-2xl"
+                : " text-primary"
             }`}
           >
             {page}
@@ -156,11 +156,11 @@ const Pagination: React.FC<PaginationProps> = ({
         {visiblePages[visiblePages.length - 1] < totalPages && (
           <>
             {visiblePages[visiblePages.length - 1] < totalPages - 1 && (
-              <span className="px-2 py-2 text-gray-500">...</span>
+              <span className="px-2 py-2 text-light text-primary">...</span>
             )}
             <button
               onClick={() => onPageChange(totalPages)}
-              className="px-3 py-2 text-sm bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors"
+              className="text-primary bold-16 cursor-pointer"
             >
               {totalPages}
             </button>
@@ -171,18 +171,16 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="w-[90px] px-3 py-2 text-sm bg-tertiary/30 text-primary-deep rounded-md hover:bg-tertiary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="btn-dark bold-16 flexCenter gap-x-2 !rounded-full"
         >
           {t("Next")}
         </button>
       </div>
 
       {/* Page jump input (optional) */}
-      {showPageJump && totalPages > 10 && (
-        <div className="flex items-center space-x-2 text-sm">
-          <span className="text-gray-600">
-            {t("goToPage")}
-          </span>
+      {/* {showPageJump && totalPages > 10 && (
+        <div className="flex items-center space-x-2">
+          <span className="text-gray-600">{t("goToPage")}</span>
           <input
             type="number"
             min="1"
@@ -201,7 +199,7 @@ const Pagination: React.FC<PaginationProps> = ({
             })}
           </span>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

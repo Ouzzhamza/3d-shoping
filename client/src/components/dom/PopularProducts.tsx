@@ -2,13 +2,18 @@
 import React, { useState } from "react";
 import Title from "./Title";
 import { useTranslations } from "next-intl";
-import Product from "@/components/canvas/Product";
+// import Product from "@/components/canvas/Product";
 import { PopularProductsMap } from "../../../public/data";
-import { Html, View } from "@react-three/drei";
+import { View } from "@react-three/drei";
 import ProductPicture from "../ui/ProductPicture";
 import IconSwitcher from "../ui/IconSwitcher";
 
+
+const Product = React.lazy(() => import("@/components/canvas/Product"));
+
+
 export default function PopularProducts() {
+
   const t = useTranslations("PopularProducts");
 
   // The ID of the product in "renderType" mode (or null)
@@ -17,7 +22,9 @@ export default function PopularProducts() {
   // Handler for switching render type for a product
   const handleToggleRenderType = (id: number) => {
     setActiveRenderId((prevId) => (prevId === id ? null : id));
+    
   };
+
 
   return (
     <section className="max-padd-container mt-32">
@@ -32,13 +39,13 @@ export default function PopularProducts() {
                 className="relative w-[350px] h-[400px] cursor-pointer flex justify-center items-center z-20"
                 key={product.id}
               >
-                <View className="relative w-full h-full">
                   {is3DView ? (
+                <View className="relative w-full h-full">
                     <Product product={product} />
+                </View>
                   ) : (
                     <ProductPicture product={product} />
                   )}
-                </View>
                 <IconSwitcher
                   toggleRenderType={() => handleToggleRenderType(product.id)}
                   renderType={is3DView}

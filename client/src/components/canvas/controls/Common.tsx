@@ -9,7 +9,7 @@ export function CommonScene() {
       <OrbitControls
         enableZoom={false}
         enablePan={false}
-        // autoRotate
+        autoRotate
         autoRotateSpeed={3}
         minPolarAngle={Math.PI / 2}
         maxPolarAngle={Math.PI / 2}

@@ -5,10 +5,10 @@ import { ProductProps } from "@/types/global";
 
 function ProductPicture({ product }: ProductProps) {
   return (
-    <Html
-      fullscreen
-      className="relative w-full h-full shadow-[inset_0_-2px_4px_rgba(0,0,0,0.6)]"
-      zIndexRange={[10, 0]}
+    <div
+      
+      className="relative w-full h-full"
+      // zIndexRange={[10, 0]}
     >
       <Image
         key={product.id}
@@ -16,10 +16,10 @@ function ProductPicture({ product }: ProductProps) {
         alt="productImg"
         fill
         priority
-        className="object-cover object-left"
+        className="object-cover"
         sizes="50vw"
       />
-      <div className="absolute inset-0 bg-black/50 z-10 shadow-[inset_0_0_5px_5px_rgba(212,175,55,0.6)]" />
+      <div className="absolute inset-0 bg-black/25 shadow-[inset_0_0_5px_5px_rgba(212,175,55,0.6)]" />
       <div className="w-full h-full flex flex-col relative z-20 pointer-events-auto">
         <div className="flex-1 flex items-start justify-between p-4">
           <h4 className="h4 bold-15 line-clamp-1 bg-black/50 text-white px-3 py-1 rounded-full">
@@ -41,7 +41,7 @@ function ProductPicture({ product }: ProductProps) {
           </div>
         </div>
       </div>
-    </Html>
+    </div>
   );
 }
 

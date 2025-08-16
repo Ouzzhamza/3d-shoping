@@ -2,7 +2,7 @@
   "Header": {
     "home": "Home",
     "collection": "Collection",
-    "testimponial": "Testimponial",
+    "testimonial": "Testimonial",
     "contact": "Contact",
     "orders": "Orders",
     "login": "Login",
@@ -63,5 +63,24 @@
     "Previous": "Previous",
     "Next": "Next",
     "goToPage": "Go to page:"
-  }
+  },
+  "Collection" : {
+    "Title": "Collection",
+    "NoProductsFound": "Store is empty for the moment"
+  },
+   "Testimonial": {
+    "Title": "People says"
+   },
+    "Contact": {
+    "Title": "Contact us",
+    "FirstName": "First Name",
+    "LastName": "LastName",
+    "Email": "Email",
+    "PhoneNumber": "Phone Number",
+    "Message": "Message",
+    "Submit": "Submit"
+    },
+    "Details": {
+      "Title": "Product Details"
+    }
 }

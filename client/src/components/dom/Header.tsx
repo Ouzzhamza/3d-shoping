@@ -24,7 +24,7 @@ export function Header() {
   const navItems = [
     { name: "home", link: "/" },
     { name: "collection", link: "/collection" },
-    { name: "testimponial", link: "/testimponial" },
+    { name: "testimonial", link: "/testimonial" },
     { name: "contact", link: "/contact" },
   ];
 

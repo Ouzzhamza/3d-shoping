@@ -72,10 +72,11 @@ export const NavItems: React.FC<NavItemsProps> = ({
 
   const t = useHeaderTranslations();
 
-    const pathname = usePathname();
-    const router = useRouter();
+const pathname = usePathname();
+const lastSegment = pathname.slice(pathname.lastIndexOf("/"));   
+ const router = useRouter();
     const onItemClick = (path: string) => {
-      handleTransitionClick(path, pathname, router);
+      handleTransitionClick(path, lastSegment, router);
     };
 
   return (
