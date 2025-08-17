@@ -41,6 +41,8 @@ export const PopularProductsMap = [
     path: "/glbs/Hoodie3-1.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Hoodie3.webp",
+    description:
+      "Comfort-first hoodie with a cozy interior, perfect for lounging or casual outings.",
     colors: [
       {
         id: "red",
@@ -58,12 +60,14 @@ export const PopularProductsMap = [
   },
   {
     id: 2,
-    name: "Elegant Robe",
+    name: "Pleated Skirt",
     price: "$119.99",
     originalPrice: "$139.99",
     path: "/glbs/Robe1-1.glb",
     sizes: ["S", "M", "L"],
     productImg: "/images/products/Robe1.webp",
+    description: "A chic pleated skirt that flows beautifully with every step.",
+
     colors: [
       {
         id: "black",
@@ -93,6 +97,8 @@ export const PopularProductsMap = [
     path: "/glbs/Tshirt3.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Tshirt3.webp",
+    description:
+      "Everyday T-shirt designed for comfort and durability with a classic cut.",
     colors: [],
   },
   {
@@ -103,6 +109,8 @@ export const PopularProductsMap = [
     path: "/glbs/Shoe1-2.glb",
     sizes: ["40", "41", "42", "43", "44"],
     productImg: "/images/products/Shoe1.webp",
+    description:
+      "Lightweight sneakers with cushioned soles, perfect for sports or casual outfits.",
     colors: [
       {
         id: "red",
@@ -126,12 +134,14 @@ export const PopularProductsMap = [
   },
   {
     id: 5,
-    name: "Casual Jersey",
+    name: "Jersey",
     price: "$49.99",
     originalPrice: "$59.99",
     path: "/glbs/jersey.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/jersey.webp",
+    description:
+      "Sporty jersey made from breathable fabric, ideal for workouts or casual wear.",
     colors: [],
   },
 ];
@@ -146,6 +156,8 @@ export const Products = [
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Tshirt.webp",
     colors: [],
+    description:
+      "A timeless cotton T-shirt with a relaxed fit, perfect for everyday wear.",
   },
   {
     id: 2,
@@ -155,6 +167,9 @@ export const Products = [
     path: "/glbs/Tshirt1.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Tshirt1.webp",
+    description:
+      "Bright and stylish T-shirt with multiple color options, soft cotton fabric, and a casual fit.",
+
     colors: [
       {
         id: "blue",
@@ -185,16 +200,20 @@ export const Products = [
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Tshirt2.webp",
     colors: [],
+    description:
+      "Minimalist T-shirt with a clean look, crafted from breathable cotton.",
   },
   {
     id: 4,
-    name: "Basic T-shirt 3",
+    name: "Basic T-shirt",
     price: "$29.99",
     originalPrice: "$39.99",
     path: "/glbs/Tshirt3.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Tshirt3.webp",
     colors: [],
+    description:
+      "Everyday T-shirt designed for comfort and durability with a classic cut.",
   },
   {
     id: 5,
@@ -205,6 +224,8 @@ export const Products = [
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Tshirt4.webp",
     colors: [],
+    description:
+      "Fun and colorful T-shirt that adds a lively touch to your casual wardrobe.",
   },
   {
     id: 6,
@@ -215,6 +236,8 @@ export const Products = [
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Hoodie.webp",
     colors: [],
+    description:
+      "Soft cotton-blend hoodie with a relaxed fit, ideal for layering on cool days.",
   },
   {
     id: 7,
@@ -224,6 +247,9 @@ export const Products = [
     path: "/glbs/Hoodie2-1.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Hoodie2.webp",
+    description:
+      "Modern-fit hoodie available in bold shades, offering warmth and urban style.",
+
     colors: [
       {
         id: "blue",
@@ -253,6 +279,9 @@ export const Products = [
     path: "/glbs/Hoodie3-1.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Hoodie3.webp",
+    description:
+      "Comfort-first hoodie with a cozy interior, perfect for lounging or casual outings.",
+
     colors: [
       {
         id: "red",
@@ -276,6 +305,9 @@ export const Products = [
     path: "/glbs/Hoodie4-1.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Hoodie4.webp",
+    description:
+      "Athletic-inspired hoodie built for both comfort and active wear.",
+
     colors: [],
   },
   {
@@ -286,6 +318,9 @@ export const Products = [
     path: "/glbs/MalePants1-1.glb",
     sizes: ["30", "32", "34", "36"],
     productImg: "/images/products/MalePants1.webp",
+    description:
+      "Stylish men's pants available in multiple shades, offering comfort and versatility.",
+
     colors: [
       {
         id: "gray",
@@ -309,6 +344,9 @@ export const Products = [
     path: "/glbs/MalePants2-1.glb",
     sizes: ["30", "32", "34", "36"],
     productImg: "/images/products/MalePants2.webp",
+    description:
+      "Classic men's trousers made with premium fabric for all-day comfort.",
+
     colors: [
       {
         id: "lightBlue",
@@ -338,6 +376,9 @@ export const Products = [
     path: "/glbs/MalePants3-1.glb",
     sizes: ["30", "32", "34", "36"],
     productImg: "/images/products/MalePants3.webp",
+    description:
+      "Classic men's trousers made with premium fabric for all-day comfort.",
+
     colors: [],
   },
   {
@@ -348,6 +389,9 @@ export const Products = [
     path: "/glbs/WomenPants1-1.glb",
     sizes: ["26", "28", "30", "32"],
     productImg: "/images/products/WomenPants1.webp",
+    description:
+      "Fitted women's pants offering both style and flexibility for casual wear.",
+
     colors: [
       {
         id: "blue",
@@ -371,6 +415,9 @@ export const Products = [
     path: "/glbs/Shoe1-1.glb",
     sizes: ["40", "41", "42", "43", "44"],
     productImg: "/images/products/Shoe1.webp",
+    description:
+      "Lightweight sneakers with cushioned soles, perfect for sports or casual outfits.",
+
     colors: [
       {
         id: "red",
@@ -400,6 +447,9 @@ export const Products = [
     path: "/glbs/Shoe2-1.glb",
     sizes: ["40", "41", "42", "43", "44"],
     productImg: "/images/products/Shoe2.webp",
+    description:
+      "Elegant wingtip boots crafted from durable leather for a polished look.",
+
     colors: [
       {
         id: "black",
@@ -417,12 +467,15 @@ export const Products = [
   },
   {
     id: 16,
-    name: "Running Shoes 3",
+    name: "Oxford Shoes",
     price: "$149.99",
     originalPrice: "$179.99",
     path: "/glbs/Shoe3-1.glb",
     sizes: ["40", "41", "42", "43", "44"],
     productImg: "/images/products/Shoe3.webp",
+    description:
+      "Performance running shoes with breathable design and strong grip soles.",
+
     colors: [
       {
         id: "brown",
@@ -440,12 +493,15 @@ export const Products = [
   },
   {
     id: 17,
-    name: "Running Shoes 4",
+    name: "Chuck Canvas",
     price: "$139.99",
     originalPrice: "$169.99",
     path: "/glbs/Shoe4-1.glb",
     sizes: ["40", "41", "42", "43", "44"],
     productImg: "/images/products/Shoe4.webp",
+    description:
+      "Sleek running shoes engineered for speed and comfort during workouts.",
+
     colors: [],
   },
   {
@@ -456,16 +512,21 @@ export const Products = [
     path: "/glbs/Jogging.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Jogging.webp",
+    description:
+      "Lightweight jogging outfit designed for flexibility and breathable comfort.",
+
     colors: [],
   },
   {
     id: 19,
-    name: "Casual Hat",
+    name: "Rain Hat",
     price: "$24.99",
     originalPrice: "$34.99",
     path: "/glbs/Hat1-1.glb",
     sizes: [],
     productImg: "/images/products/Hat1.webp",
+    description: "Rain hat with multiple color options to match any outfit.",
+
     colors: [
       {
         id: "blue",
@@ -495,12 +556,15 @@ export const Products = [
   },
   {
     id: 20,
-    name: "Casual Hat",
+    name: "Bucket Hat",
     price: "$24.99",
     originalPrice: "$34.99",
     path: "/glbs/Hat2.glb",
     sizes: [],
     productImg: "/images/products/Hat2.webp",
+    description:
+      "Simple and stylish Bucket hat, lightweight and comfortable for daily wear.",
+
     colors: [],
   },
   {
@@ -511,6 +575,9 @@ export const Products = [
     path: "/glbs/Hat3-1.glb",
     sizes: [],
     productImg: "/images/products/Hat3.webp",
+    description:
+      "Western-inspired hat with a structured design, perfect for outdoor style.",
+
     colors: [
       {
         id: "darkBrown",
@@ -540,6 +607,9 @@ export const Products = [
     path: "/glbs/Hat4.glb",
     sizes: [],
     productImg: "/images/products/Hat4.webp",
+    description:
+      "Minimalist hat with a sharp look, designed for casual everyday outfits.",
+
     colors: [],
   },
   {
@@ -550,6 +620,9 @@ export const Products = [
     path: "/glbs/Hat5.glb",
     sizes: [],
     productImg: "/images/products/Hat5.webp",
+    description:
+      "Classic gambler-style hat, lightweight and breathable for sunny days.",
+
     colors: [],
   },
   {
@@ -560,6 +633,9 @@ export const Products = [
     path: "/glbs/Hat6.glb",
     sizes: [],
     productImg: "/images/products/Hat6.webp",
+    description:
+      "Warm knitted beanie with cuffed design, perfect for cold weather.",
+
     colors: [],
   },
   {
@@ -570,6 +646,9 @@ export const Products = [
     path: "/glbs/glasses1.glb",
     sizes: [],
     productImg: "/images/products/glasses1.webp",
+    description:
+      "Sleek eyewear with lightweight frames, ideal for a modern casual look.",
+
     colors: [],
   },
   {
@@ -581,6 +660,8 @@ export const Products = [
     sizes: [],
     productImg: "/images/products/glasses2.webp",
     colors: [],
+    description:
+      "Classic round-frame glasses crafted for both style and durability.",
   },
   {
     id: 27,
@@ -591,6 +672,7 @@ export const Products = [
     sizes: [],
     productImg: "/images/products/glasses3.webp",
     colors: [],
+    description: "Modern square-frame glasses that complement any face shape.",
   },
   {
     id: 28,
@@ -601,6 +683,8 @@ export const Products = [
     sizes: [],
     productImg: "/images/products/glasses4.webp",
     colors: [],
+    description:
+      "Lightweight and durable glasses offering a sharp, professional look.",
   },
   {
     id: 29,
@@ -611,6 +695,7 @@ export const Products = [
     sizes: [],
     productImg: "/images/products/glasses5.webp",
     colors: [],
+    description: "Stylish aviator-inspired glasses with a timeless appeal.",
   },
   {
     id: 30,
@@ -621,6 +706,8 @@ export const Products = [
     sizes: [],
     productImg: "/images/products/glasses6.webp",
     colors: [],
+    description:
+      "Trendy glasses with bold frames, perfect for making a statement.",
   },
   {
     id: 31,
@@ -631,6 +718,8 @@ export const Products = [
     sizes: [],
     productImg: "/images/products/glasses7.webp",
     colors: [],
+    description:
+      "Minimalist glasses designed for everyday comfort and clarity.",
   },
   {
     id: 32,
@@ -640,6 +729,9 @@ export const Products = [
     path: "/glbs/Handbag.glb",
     sizes: [],
     productImg: "/images/products/Handbag.webp",
+    description:
+      "Elegant leather handbag with spacious compartments for daily essentials.",
+
     colors: [],
   },
   {
@@ -650,6 +742,9 @@ export const Products = [
     path: "/glbs/jersey.glb",
     sizes: [],
     productImg: "/images/products/jersey.webp",
+    description:
+      "Sporty jersey made from breathable fabric, ideal for workouts or casual wear.",
+
     colors: [],
   },
   {
@@ -660,6 +755,7 @@ export const Products = [
     path: "/glbs/Robe1-1.glb",
     sizes: ["S", "M", "L"],
     productImg: "/images/products/Robe1.webp",
+    description: "A chic pleated skirt that flows beautifully with every step.",
     colors: [
       {
         id: "black",
@@ -679,6 +775,8 @@ export const Products = [
     path: "/glbs/Robe2-1.glb",
     sizes: ["S", "M", "L"],
     productImg: "/images/products/Robe2.webp",
+    description:
+      "A stylish gathered skirt with a flattering silhouette, designed to accentuate your figure.",
     colors: [
       {
         id: "red",
@@ -714,6 +812,8 @@ export const Products = [
     path: "/glbs/Skirt1.glb",
     sizes: ["S", "M", "L"],
     productImg: "/images/products/Skirt1.webp",
+    description:
+      "A versatile pleated skirt crafted with lightweight materials, offering both comfort and elegance.",
     colors: [],
   },
   {
@@ -724,6 +824,8 @@ export const Products = [
     path: "/glbs/Skirt2.glb",
     sizes: ["S", "M", "L"],
     productImg: "/images/products/Skirt2.webp",
+    description:
+      "A timeless denim skirt that combines casual comfort with a fashionable edge.",
     colors: [],
   },
   {
@@ -734,6 +836,8 @@ export const Products = [
     path: "/glbs/Tie.glb",
     sizes: [],
     productImg: "/images/products/Tie.webp",
+    description:
+      "A classic tie designed with elegance and sophistication. Perfect for business meetings, formal events, or elevating any outfit with a touch of class.",
     colors: [],
   },
   {
@@ -744,6 +848,8 @@ export const Products = [
     path: "/glbs/Tshirt5.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Tshirt5.webp",
+    description:
+      "A premium-quality T-shirt offering comfort and style in one. Made with soft, breathable cotton.",
     colors: [],
   },
   {
@@ -754,6 +860,8 @@ export const Products = [
     path: "/glbs/Tshirt6.glb",
     sizes: ["S", "M", "L", "XL"],
     productImg: "/images/products/Tshirt6.webp",
+    description:
+      "A stylish women’s T-shirt with a modern fit, crafted from lightweight and breathable fabric.",
     colors: [],
   },
 ];

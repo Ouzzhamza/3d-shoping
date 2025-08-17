@@ -138,6 +138,7 @@ type EnvironmentPreset =
   export interface ProductsType {
     id: number;
     name: string;
+    description: string,
     price: string;
     productImg: string;
     originalPrice: string;

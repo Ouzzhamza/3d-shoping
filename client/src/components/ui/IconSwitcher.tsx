@@ -7,7 +7,7 @@ import { IconSwitcherProps } from "@/types/global";
 function IconSwitcher({ toggleRenderType, renderType }: IconSwitcherProps) {
   return (
     <div
-      className="absolute top-5 right-5 cursor-pointer z-30 select-none"
+      className="absolute top-5 right-5 cursor-pointer z-30 select-none "
       onClick={toggleRenderType}
       role="button"
       tabIndex={0}

@@ -8,10 +8,10 @@
   --color-bg-dark: #000000;
   --color-bg-gray: #3a3a3a;
   --color-primary: #d4af37;
-  --color-secondary: #376e6f;
   --color-primary-dark: #a67c00;
-  --color-text-light: #cccccc;
   --color-highlight-light: #ffe066;
+  --color-secondary: #376e6f;
+  --color-text-light: #cccccc;
 
   --font-family-custom: "Inter", "Roboto", sans-serif;
   --font-family-display: "Pacifico", "cursive", serif;

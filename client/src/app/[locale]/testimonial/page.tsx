@@ -5,6 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { testimonials } from "../../../../public/data";
 
 function Page() {
+  
   const t = useTranslations("Testimonial");
 
   return (

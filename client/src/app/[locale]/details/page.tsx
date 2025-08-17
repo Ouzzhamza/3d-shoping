@@ -1,19 +1,41 @@
+"use client"
+
+import ProductView from "@/components/canvas/ProductView";
+import ProductDescription from "@/components/dom/ProductDescription";
+import ProductOptions from "@/components/dom/ProductOptions";
 import Title from "@/components/dom/Title";
-import { ProductType } from "@/types/global";
+import { ProductsType } from "@/types/global";
+import { useProductsStore } from "@/zustand/store";
 import { useTranslations } from "next-intl";
 import React from "react";
 
-function Page(product: ProductType) {
+function Page(product: ProductsType) {
+
   const t = useTranslations("Details");
 
+  const selectedProduct = useProductsStore((state) => state.selectedProduct);
+
+  console.log("selected", selectedProduct)
   return (
     <section className="max-padd-container mt-36">
       <div className="max-padd-container2 h-screen">
         <Title title={t("Title")} titleStyle="w-fit" HeaderStyle="h2" />
-        <div className="rounded-3xl border-[1px] border-primary h-[550px] flex justify-center items-center mt-16 backdrop-blur-3xl">
-          {/* <Descripption/> */}
-          {/* <Product/> */}
-          
+        <div className="max-padd-container2">
+          <div className="rounded-3xl border-[1px] border-primary h-[550px] grid grid-cols-3 mt-16 w-full backdrop-blur-3xl">
+            <ProductDescription
+              Title={selectedProduct?.name}
+              Description={selectedProduct?.description}
+            />
+            <ProductView
+              id={selectedProduct?.id}
+              path={selectedProduct?.path}
+            />
+            <ProductOptions
+              colors={selectedProduct?.colors}
+              sizes={selectedProduct?.sizes}
+              price={selectedProduct?.price}
+            />
+          </div>
         </div>
       </div>
     </section>

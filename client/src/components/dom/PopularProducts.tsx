@@ -36,7 +36,7 @@ export default function PopularProducts() {
             const is3DView = activeRenderId === product.id;
             return (
               <div
-                className="relative w-[350px] h-[400px] cursor-pointer flex justify-center items-center z-20"
+                className="relative w-[350px] h-[400px] flex justify-center items-center z-20"
                 key={product.id}
               >
                   {is3DView ? (

@@ -17,7 +17,10 @@ type useSearchStore = {
 
 type useProductsStore = {
   Products: ProductsType[];
+  selectedProduct: ProductsType | null;
+
   setProduct: (value: ProductsType[]) => void;
+  setProductById: (id: number) => void;
 };
 
 export const useAuthStore = create<useAuthStore>((set) => ({
@@ -34,5 +37,11 @@ export const useSearchStore = create<useSearchStore>((set) => ({
 
 export const useProductsStore = create<useProductsStore>((set) => ({
   Products: Products,
+  selectedProduct: null,
   setProduct: (value) => set({ Products: value }),
+  setProductById: (id: number) =>
+    set((state) => {
+      const foundProduct = state.Products.find((p) => p.id === id) || null;
+      return { selectedProduct: foundProduct };
+    }),
 }));
