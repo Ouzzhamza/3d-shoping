@@ -1,6 +1,16 @@
-import React from "react";
+import { View } from "@react-three/drei";
+import React, { Suspense } from "react";
+import Hero3D from "./Hero3D";
+import AnimatedModel from "./AnimatedProduct";
+import { Spinner3D } from "./Spinner3D";
 
-function ProductView({ id, path }: { id?: number; path?: string }) {
+function ProductView({
+  id,
+  path,
+}: {
+  id?: number;
+  path?: string;
+}) {
   return (
     <div className="h-full w-full flex justify-center items-center">
       {/* Glowing Circle Container */}
@@ -26,6 +36,18 @@ function ProductView({ id, path }: { id?: number; path?: string }) {
           }}
         />
       </div>
+
+      <View
+        style={{
+          height: "100%",
+          width: "100%",
+          position: "absolute",
+        }}
+      >
+        <Suspense fallback={<Spinner3D size={50} />}>
+          <AnimatedModel path={path} />
+        </Suspense>
+      </View>
     </div>
   );
 }

@@ -22,50 +22,26 @@ const Model3D = dynamic(
   }
 );
 
-// interface ColorOption {
-//   id: string;
-//   name: string;
-//   color: string;
-//   path?: string;
-// }
+const NoBgCommonScene = dynamic(
+  () =>
+    import("@/components/canvas/controls/NoBgCommon").then((mod) => mod.NoBgCommon),
+  {
+    ssr: true,
+  }
+);
 
-// interface ProductProps {
-//   id: number;
-//   name: string;
-//   price: string;
-//   originalPrice: string;
-//   path: string;
-//   sizes: string[];
-//   colors: ColorOption[];
-// }
 
 function Hero3D() {
 
   return (
       <Suspense fallback={<Spinner3D size={50} />}>
-        <PerspectiveCamera makeDefault position={[0, 0, 6]} />
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={3}
-          minPolarAngle={Math.PI / 2}
-          maxPolarAngle={Math.PI / 2}
-          enableDamping={true}
-          dampingFactor={0.05}
-        />
-        <pointLight position={[0, 0, 2]} intensity={5} color="#ffffff" />
-        <pointLight position={[0, 0, -2]} intensity={5} color="#ffffff" />
-        <directionalLight position={[5, 5, 5]} intensity={1} color="#ffffff" />
-        <ambientLight intensity={2} />
-
+        <NoBgCommonScene/>
         <Model3D
           scale={3}
           position={[0, -0.5, 0]}
           path={"/glbs/Hero.glb"}
           speed={0}
         />
-        <Environment resolution={64} preset="night" />
       </Suspense>
   );
 }

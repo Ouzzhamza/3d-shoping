@@ -12,7 +12,7 @@ export default function Template({children}: {children: React.ReactNode}) {
      
     useEffect(() => {
       
-        console.log("Template mounted");
+        // console.log("Template mounted");
         setBannersRef(bannersRef);
         animationPageIn(bannersRef);
 

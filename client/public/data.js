@@ -34,7 +34,7 @@ export default images;
 
 export const PopularProductsMap = [
   {
-    id: 1,
+    id: 8,
     name: "Cozy Hoodie",
     price: "$79.99",
     originalPrice: "$99.99",
@@ -59,7 +59,7 @@ export const PopularProductsMap = [
     ],
   },
   {
-    id: 2,
+    id: 34,
     name: "Pleated Skirt",
     price: "$119.99",
     originalPrice: "$139.99",
@@ -90,7 +90,7 @@ export const PopularProductsMap = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     name: "Basic T-shirt",
     price: "$29.99",
     originalPrice: "$39.99",
@@ -102,7 +102,7 @@ export const PopularProductsMap = [
     colors: [],
   },
   {
-    id: 4,
+    id: 14,
     name: "Air Shoes",
     price: "$149.99",
     originalPrice: "$179.99",
@@ -133,7 +133,7 @@ export const PopularProductsMap = [
     ],
   },
   {
-    id: 5,
+    id: 33,
     name: "Jersey",
     price: "$49.99",
     originalPrice: "$59.99",

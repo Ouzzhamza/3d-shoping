@@ -27,7 +27,7 @@ function Page() {
 
     const handleSubmit = () => {
       // Handle form submission here
-      console.log("Form submitted:", formData);
+      // console.log("Form submitted:", formData);
     };
 
       const t = useTranslations("Contact");

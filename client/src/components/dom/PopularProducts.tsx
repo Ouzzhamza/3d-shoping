@@ -22,7 +22,7 @@ export default function PopularProducts() {
   // Handler for switching render type for a product
   const handleToggleRenderType = (id: number) => {
     setActiveRenderId((prevId) => (prevId === id ? null : id));
-    
+
   };
 
 

@@ -9,7 +9,6 @@ const Model3D = dynamic(
   () => import("@/components/canvas/models/Model3D").then((mod) => mod.Model3D),
   {
     ssr: false,
-    // loading: () => <Spinner3D size={50} />,
   }
 );
 
@@ -18,7 +17,6 @@ const CommonScene = dynamic(
     import("@/components/canvas/controls/Common").then((mod) => mod.CommonScene),
   {
     ssr: true,
-    // loading: () => <Spinner3D size={50} />,
   }
 );
 
@@ -37,7 +35,6 @@ function Product({
   const [currentPath, setCurrentPath] = useState<string>(product.path);
 
   const handleSetCurrentPath = (path: string) => {
-    // Since currentPath is a string (single path), update it directly
     setCurrentPath(path);
   };
   

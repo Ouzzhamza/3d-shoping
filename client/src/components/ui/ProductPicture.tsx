@@ -12,14 +12,14 @@ import { handleTransitionClick } from "@/lib/utils";
 
 function ProductPicture({ product }: ProductProps) {
 
-  const { setProductById } = useProductsStore();
+  const { setSelectedProduct } = useProductsStore();
     const router = useRouter();
     const pathname = usePathname();
     const lastSegment = pathname.slice(pathname.lastIndexOf("/"));
 
    const handleViewMore = (id: number) => {
-     console.log("details");
-     setProductById(id);
+    //  console.log("details");
+     setSelectedProduct(product);
      handleTransitionClick("/details", lastSegment, router);
      
    };
@@ -48,7 +48,7 @@ function ProductPicture({ product }: ProductProps) {
             {product.colors.map((color) => (
               <button
                 key={color.id}
-                className="w-6 h-6 rounded-full border-2 transition-all duration-200 relative group pointer-events-none"
+                className="w-6 h-6 rounded-full border-2 transition-all duration-200 relative group "
                 style={{ backgroundColor: color.color }}
                 tabIndex={-1} // Prevents keyboard focus too
                 aria-disabled="true"
@@ -57,10 +57,10 @@ function ProductPicture({ product }: ProductProps) {
           </div>
           <div className="flex flex-col items-end gap-4">
             {/* Only this div can receive pointer events */}
-            <div className="bg-black/50 inline-flex text-white px-2 py-1 rounded-full text-sm w-min pointer-events-auto cursor-pointer">
+            <div className="bg-black/50 inline-flex text-white px-2 py-1 rounded-full text-sm w-min cursor-pointer">
               <PiEye size={20} onClick={() => handleViewMore(product.id)} />
             </div>
-            <div className="bg-black/50 text-white px-3 py-1 rounded-full text-sm pointer-events-none">
+            <div className="bg-black/50 text-white px-3 py-1 rounded-full text-sm">
               {product.price}
             </div>
           </div>

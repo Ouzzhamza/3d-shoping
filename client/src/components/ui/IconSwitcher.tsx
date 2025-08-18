@@ -24,7 +24,7 @@ function IconSwitcher({ toggleRenderType, renderType }: IconSwitcherProps) {
           className={`absolute top-0 left-0 w-full h-full text-primary transition-opacity duration-500 transform origin-center ${
             renderType
               ? "opacity-100 scale-100 animate-[spin-z]"
-              : "opacity-0 scale-75 pointer-events-none"
+              : "opacity-0 scale-75 "
           }`}
           style={{ animationDuration: "1.5s" }}
         />
@@ -32,7 +32,7 @@ function IconSwitcher({ toggleRenderType, renderType }: IconSwitcherProps) {
           size={30}
           className={`absolute top-0 left-0 w-full h-full text-primary transition-opacity duration-500 transform origin-center ${
             renderType
-              ? "opacity-0 scale-75 pointer-events-none"
+              ? "opacity-0 scale-75 "
               : "opacity-100 scale-100 animate-[spin-z]"
           }`}
           style={{ animationDuration: "1.5s" }}
