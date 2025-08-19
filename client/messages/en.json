@@ -90,6 +90,9 @@
     "Submit": "Submit"
     },
     "Details": {
-      "Title": "Product Details"
+      "Title": "Product Details",
+      "AddToCart": "Add to cart",
+      "Color": "Color",
+      "Size": "Size"
     }
 }

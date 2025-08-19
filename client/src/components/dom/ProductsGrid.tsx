@@ -31,9 +31,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
           >
             {is3DView ? (
               <View className="relative w-full h-full">
-                <Suspense fallback={<div>Loading...</div>}>
                   <Product product={product} />
-                </Suspense>
               </View>
             ) : (
               <ProductPicture product={product} />

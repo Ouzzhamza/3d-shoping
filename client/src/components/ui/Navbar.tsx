@@ -30,6 +30,11 @@ export const useHeaderTranslations = () => {
   return useTranslations("Header");
 };
 
+export const useAppRouter = () => {
+  const router = useRouter();
+  return router;
+};
+
 
 export const Navbar: React.FC<NavbarProps> = ({ children, className }) => {
   const ref = useRef(null);
@@ -71,13 +76,13 @@ export const NavItems: React.FC<NavItemsProps> = ({
   const [hovered, setHovered] = useState<number | null>(null);
 
   const t = useHeaderTranslations();
+  const router = useAppRouter();
 
-const pathname = usePathname();
-const lastSegment = pathname.slice(pathname.lastIndexOf("/"));
- const router = useRouter();
-    const onItemClick = (path: string) => {
-      handleTransitionClick(path, lastSegment, router);
-    };
+  const pathname = usePathname();
+  const lastSegment = pathname.slice(pathname.lastIndexOf("/"));
+  const onItemClick = (path: string) => {
+    handleTransitionClick(path, lastSegment, router);
+  };
 
   return (
     <motion.div
@@ -131,6 +136,8 @@ export const MobileNav: React.FC<MobileNavProps> = ({
 
 export const NavControllers: React.FC<NavControllersProps> = ({ isAuthonticated }) => {
   const t = useHeaderTranslations();
+  const router = useAppRouter();
+
   const [showSearch, setShowSearch] = useState<boolean>(false);
 
   return (
@@ -183,7 +190,7 @@ export const NavControllers: React.FC<NavControllersProps> = ({ isAuthonticated 
           </div>
         ) : (
           <button
-            onClick={() => ""}
+            onClick={() => router.push("/login")}
             className="btn-dark bold-16 flexCenter gap-x-2 !rounded-full"
           >
             {t("login")}

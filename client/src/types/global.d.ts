@@ -172,3 +172,8 @@ type EnvironmentPreset =
     toggleRenderType: () => void;
     renderType: boolean;
   }
+
+  export interface Login {
+    email: string;
+    password: string;
+  }

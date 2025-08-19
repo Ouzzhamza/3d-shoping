@@ -6,6 +6,7 @@ import { Html } from "@react-three/drei";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { PiEye } from "react-icons/pi";
+import ColorSelection from "../dom/ColorSelection";
 
 function ProductDetails({ product, setCurrentPath }: ProductDetailsProps) {
   const { setSelectedProduct } = useProductsStore();
@@ -38,24 +39,12 @@ function ProductDetails({ product, setCurrentPath }: ProductDetailsProps) {
           </h4>
         </div>
         <div className="flex-1 flex items-end justify-between p-4">
-          <div className="flex gap-2">
-            {product.colors.map((color) => (
-              <button
-                key={color.id}
-                onClick={() => handleColorChange(color)}
-                className={`w-6 h-6 rounded-full border-2 transition-all duration-200 relative group cursor-pointer ${
-                  selectedColor.id === color.id
-                    ? "border-gray-800 scale-110"
-                    : "border-gray-300 hover:border-gray-500 hover:scale-105"
-                }`}
-                style={{ backgroundColor: color.color }}
-              >
-                {selectedColor.id === color.id && (
-                  <div className="absolute inset-0 rounded-full border-2 border-white shadow-inner"></div>
-                )}
-              </button>
-            ))}
-          </div>
+          <ColorSelection
+            colors={product.colors}
+            selectedColor={selectedColor}
+            onClick={handleColorChange}
+            className="w-6 h-6"
+          />
           <div className="flex flex-col items-end gap-4 ">
             <button className="bg-black/50 inline-flex text-white px-2 py-1 rounded-full text-sm w-min cursor-pointer">
               <PiEye size={20} onClick={() => handleViewMore(product.id)} />
