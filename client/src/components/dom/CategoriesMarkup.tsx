@@ -3,17 +3,16 @@ import React from "react";
 import Title from "./Title";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from "next/navigation";
 import { handleTransitionClick } from "@/lib/utils";
-
 
 type ImageType = {
   image: string;
+  type: string;
   // add other image data props here if any
 };
 
 type CategoriesMarkupProps = {
-  
   dragRef: React.RefObject<HTMLDivElement | null>;
   spinRef: React.RefObject<HTMLDivElement | null>;
   groundRef: React.RefObject<HTMLDivElement | null>;
@@ -38,11 +37,10 @@ const CategoriesMarkup: React.FC<CategoriesMarkupProps> = ({
   handlePointerUpOrLeave,
   handleWheel,
 }) => {
+  const t = useTranslations("Categories");
+  const pathname = usePathname();
+  const router = useRouter();
 
-    const t = useTranslations("Categories");
-     const pathname = usePathname();
-     const router = useRouter();
-  
   return (
     <section className="max-padd-container mt-32 h-[400px]">
       <div className="max-padd-container2">
@@ -66,38 +64,38 @@ const CategoriesMarkup: React.FC<CategoriesMarkupProps> = ({
             ref={spinRef}
           >
             {images.map((image, index) => (
-              <Image
-                src={`${image.image}`}
+              <div
                 key={index}
-                alt=""
-                width={imgWidth}
-                height={imgHeight}
-                className="
-                  [transform-style:preserve-3d]
-                  absolute
-                  left-0
-                  top-0
-                  w-full
-                  h-full
-                  object-cover
-                  leading-[200px]
-                  text-[50px]
-                  text-center
-                  rounded-3xl
-                  !border-2
-                  border-primary-2
-                  cursor-pointer
-                  transition-all
-                  duration-300
-                  [box-reflect:below_10px_linear-gradient(transparent,transparent,#0005)]"
+                className="item absolute left-0 top-0 w-full h-full cursor-pointer transition-all duration-300 [transform-style:preserve-3d]"
                 style={{
                   userSelect: "none",
                   WebkitUserSelect: "none",
                   MozUserSelect: "none",
                 }}
-                onDragStart={(e) => e.preventDefault()}
-                onClick={() => handleTransitionClick("/collection", pathname, router) }
-              />
+                onClick={() =>
+                  handleTransitionClick(
+                    `/collection/${image.type}`,
+                    pathname,
+                    router
+                  )
+                }
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    src={image.image}
+                    alt={image.type}
+                    width={imgWidth}
+                    height={imgHeight}
+                    className="w-full h-full object-cover"
+                    onDragStart={(e) => e.preventDefault()}
+                  />
+
+                  {/* Overlay text */}
+                  <span className="absolute top-2 left-1/2 -translate-x-1/2 text-text-light bold-22 bg-black/40 px-3 py-1 rounded-3xl">
+                    {image.type}
+                  </span>
+                </div>
+              </div>
             ))}
           </div>
           <div

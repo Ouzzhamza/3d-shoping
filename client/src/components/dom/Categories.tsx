@@ -23,21 +23,22 @@ function Categories() {
   const wheelVelocity = useRef<number>(0);
   const wheelMomentumInterval = useRef<NodeJS.Timeout | null>(null);
 
-  const init = (delayTime?: number) => {
-    if (!spinRef.current) return;
-    const aEle = Array.from(
-      spinRef.current.querySelectorAll("img")
-    ) as HTMLElement[];
-    aEle.forEach((el, i) => {
-      el.style.transform = `rotateY(${
-        i * (360 / aEle.length)
-      }deg) translateZ(260px)`;
-      el.style.transition = "transform 1s";
-      el.style.transitionDelay = delayTime
-        ? `${delayTime}s`
-        : `${(aEle.length - i) / 4}s`;
-    });
-  };
+ const init = (delayTime?: number) => {
+   if (!spinRef.current) return;
+   const aEle = Array.from(
+     spinRef.current.querySelectorAll(".item") // instead of "img"
+   ) as HTMLElement[];
+
+   aEle.forEach((el, i) => {
+     el.style.transform = `rotateY(${
+       i * (360 / aEle.length)
+     }deg) translateZ(260px)`;
+     el.style.transition = "transform 1s";
+     el.style.transitionDelay = delayTime
+       ? `${delayTime}s`
+       : `${(aEle.length - i) / 4}s`;
+   });
+ };
 
   const applyTransform = (nextTY: number) => {
     if (!dragRef.current) return;

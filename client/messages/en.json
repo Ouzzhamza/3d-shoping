@@ -68,6 +68,15 @@
     "Title": "Collection",
     "NoProductsFound": "Store is empty for the moment"
   },
+  "CollectionCategory": {
+    "men": "men",
+    "women": "women",
+    "kids": "kids",
+    "footwear": "footwear",
+    "accessories": "accessories",
+    "athletic": "athletic",
+    "NoProductsFound": "No Products Found"
+  },
    "Testimonial": {
     "Title": "People says"
    },

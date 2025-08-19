@@ -1,5 +1,6 @@
 import { ProductsType } from "@/types/global";
 import { create } from "zustand";
+import {Products} from "../../public/data"
 
 type useAuthStore = {
   isAuthonticated: boolean;
@@ -29,7 +30,7 @@ export const useSearchStore = create<useSearchStore>((set) => ({
 }));
 
 export const useProductsStore = create<useProductsStore>((set) => ({
-  Products: [],
+  Products: Products,
   selectedProduct: null,
   setProducts: (value) => set({ Products: value }),
   setSelectedProduct: (product) => set({ selectedProduct: product }),

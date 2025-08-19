@@ -138,13 +138,14 @@ type EnvironmentPreset =
   export interface ProductsType {
     id: number;
     name: string;
-    description: string,
+    description: string;
     price: string;
     productImg: string;
     originalPrice: string;
     path: string;
     sizes: string[];
     colors: ColorOption[];
+    category?: string;
   }
 
   export type ProductProps = {
