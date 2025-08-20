@@ -44,9 +44,7 @@ function ProductView({
           position: "absolute",
         }}
       >
-        <Suspense fallback={<Spinner3D size={50} />}>
           <AnimatedModel path={path} />
-        </Suspense>
       </View>
     </div>
   );

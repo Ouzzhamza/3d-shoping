@@ -11,7 +11,7 @@ import Blog from "@/components/dom/Blog";
 export default function HomePage() {
 
   return (
-    <div className="min-h-screen relative z-10 pb-20">
+    <div className="min-h-screen relative z-10">
       <Hero />
       <Features />
       <Categories />

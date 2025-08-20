@@ -1,4 +1,4 @@
-import { ColorOption } from "@/types/global";
+import { ColorOption, ProductsType } from "@/types/global";
 import React, { useState } from "react";
 import ProductOptionsSkelton from "../ui/ProductOptionsSkelton";
 import Review from "../ui/Review";
@@ -6,54 +6,106 @@ import ColorSelection from "./ColorSelection";
 import SizeSelection from "./SizeSelection";
 import { useTranslations } from "next-intl";
 import QuantitySelector from "./QuantitySelector";
+import { useCartStore } from "@/zustand/store";
 
 function ProductOptions({
-  colors,
-  sizes,
-  price,
+  Product,
   setCurrentPath,
-  path,
 }: {
-  colors?: ColorOption[];
-  sizes?: string[];
-  price?: string;
+  Product: ProductsType | null;
   setCurrentPath?: (path: string) => void;
-  path?: string;
 }) {
 
+   if (!Product) return null;
   const t = useTranslations("Details");
+
+  const {
+    colors,
+    sizes,
+    path,
+    price,
+    id: productId,
+    name: productName,
+    productImg,
+  } = Product;
+
   const [selectedColor, setSelectedColor] = useState<ColorOption | null>(
     colors?.[0] || null
   );
-  const [selectedSize, setSelectedSize] = useState<string | null>(
-    sizes?.[0] || null
+  const [selectedSize, setSelectedSize] = useState<string>(
+    sizes?.[0]
   );
 
-   const handleColorChange = (color: ColorOption) => {
-      setSelectedColor(color);
-      const newPath = color.path || path || "";
-      if (setCurrentPath) setCurrentPath(newPath);
-    };
+  const [quantity, setQuantity] = useState<number>(1);
+  const [isAdding, setIsAdding] = useState<boolean>(false);
+  const [justAdded, setJustAdded] = useState<boolean>(false);
+
+  const { addToCart, totalItems } = useCartStore();
+
+  const handleQuantityChange = (newQuantity: number) => {
+    setQuantity(newQuantity);
+  };
+
+  const handleColorChange = (color: ColorOption) => {
+    setSelectedColor(color);
+    const newPath = color.path || path || "";
+    if (setCurrentPath) setCurrentPath(newPath);
+  };
 
   const handleSizeChange = (size: string) => {
     setSelectedSize(size);
   };
 
   const handleAddToCart = () => {
-    console.log("Adding to cart:", {
-      color: selectedColor,
-      size: selectedSize,
-      price,
-    });
-    // Add your cart logic here
-  };
+    if (!productId || !productName || !price) {
+      console.error("Missing required product information");
+      return;
+    }
 
-  const skeletonClass = "bg-gray-300 animate-pulse rounded-md";
+    setIsAdding(true);
+
+    try {
+      // Parse price (remove currency symbols, etc.)
+      const numericPrice = parseFloat(price.replace(/[^0-9.-]+/g, ""));
+
+      // Create cart item
+      const cartItem = {
+        id: productId,
+        name: productName,
+        price: numericPrice,
+        color: selectedColor ?? undefined,
+        size: selectedSize,
+        quantity,
+        image: productImg,
+        path: selectedColor?.path || path,
+      };
+
+      console.log(cartItem);
+      // Add to cart
+      addToCart(cartItem);
+
+      // Show success feedback
+      setJustAdded(true);
+
+      // Reset quantity after adding
+      setQuantity(1);
+
+      console.log("Added to cart:", cartItem);
+
+      // Reset success state after 2 seconds
+      setTimeout(() => {
+        setJustAdded(false);
+      }, 2000);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    } finally {
+      setIsAdding(false);
+    }
+  };
 
   // If no price, show skeleton for everything
   if (!price) {
-    return <ProductOptionsSkelton/>
-  
+    return <ProductOptionsSkelton />;
   }
 
   // If price exists, render real content
@@ -95,10 +147,17 @@ function ProductOptions({
           className="text-2xl font-bold"
           style={{ color: "var(--color-primary)" }}
         >
-          {price}
+          {price.replace(/[\d.]+/, (match) =>
+            (parseFloat(match) * quantity).toFixed(2)
+          )}
         </div>
+
         {/* <div className=" h-full"> */}
-        <QuantitySelector/>
+        <QuantitySelector
+          quantity={quantity}
+          onQuantityChange={handleQuantityChange}
+          disabled={isAdding}
+        />
         {/* </div> */}
         <button
           onClick={handleAddToCart}
@@ -111,7 +170,6 @@ function ProductOptions({
           {t("AddToCart")}
         </button>
       </div>
-
     </div>
   );
 }

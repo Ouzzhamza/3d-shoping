@@ -5,7 +5,7 @@ import React from "react";
 const Footer = () => {
   const t  = useTranslations();
   return (
-    <footer className="bg-gradient-to-r from-white/10 via-black to-white/10 relative overflow-hidden max-padd-container py-10">
+    <footer className="bg-gradient-to-r from-white/10 via-black to-white/10 relative overflow-hidden max-padd-container py-10 mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flexBetween flex flex-col md:flex-row gap-10">
         <div className="">
           <div className="flex gap-6 flex-col">

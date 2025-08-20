@@ -2,6 +2,9 @@ import blog1 from "/public/blogs/blog1.png";
 import blog2 from "/public/blogs/blog2.png";
 import blog3 from "/public/blogs/blog3.png";
 import blog4 from "/public/blogs/blog4.png";
+import { GrLocation } from "react-icons/gr";
+import { BsCreditCard } from "react-icons/bs";
+import { FaShoppingBasket } from "react-icons/fa";
 
 export const images = [
   {
@@ -964,3 +967,20 @@ export const testimonials = [
   },
 ];
 
+export const steps = [
+  {
+    id: 1,
+    title: "Cart",
+    icon: FaShoppingBasket,
+  },
+  {
+    id: 2,
+    title: "Address",
+    icon: GrLocation,
+  },
+  {
+    id: 3,
+    title: "Payment",
+    icon: BsCreditCard,
+  },
+];

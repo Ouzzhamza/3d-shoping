@@ -20,7 +20,7 @@ function Page() {
   } = useFilteredProducts();
 
   return (
-    <section className="max-padd-container mt-36 pb-24">
+    <section className="max-padd-container mt-36">
       <div className="max-padd-container2">
         <Title title={t("Title")} titleStyle="w-fit" HeaderStyle="h2" />
 

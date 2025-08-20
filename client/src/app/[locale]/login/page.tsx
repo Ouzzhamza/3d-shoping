@@ -54,7 +54,7 @@ function page() {
 
 
   return (
-    <section className="max-padd-container mt-28 pb-24 flex justify-center items-center h-screen">
+    <section className="max-padd-container mt-16 flex justify-center items-center h-screen">
       <div className="w-[600px] h-[650px] border-[1px] border-primary rounded-3xl flex justify-center items-center backdrop-blur-3xl">
         {/* Title */}
         <div className="relative w-full max-w-md h-full flex flex-col justify-center items-center gap-10">

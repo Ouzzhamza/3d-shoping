@@ -24,6 +24,7 @@ import { FaSearch, FaShoppingBasket } from "react-icons/fa";
 import { RiUserLine } from "react-icons/ri";
 import userImg from "/public/images/user.png";
 import { usePathname, useRouter } from "next/navigation";
+import { useCartStore } from "@/zustand/store";
 
 
 export const useHeaderTranslations = () => {
@@ -135,10 +136,11 @@ export const MobileNav: React.FC<MobileNavProps> = ({
 };
 
 export const NavControllers: React.FC<NavControllersProps> = ({ isAuthonticated }) => {
+
   const t = useHeaderTranslations();
   const router = useAppRouter();
-
   const [showSearch, setShowSearch] = useState<boolean>(false);
+  const {totalItems} = useCartStore();
 
   return (
     <div className="flex items-center gap-4 p-4">
@@ -174,12 +176,11 @@ export const NavControllers: React.FC<NavControllersProps> = ({ isAuthonticated 
         className="flex gap-2 items-center p-2 cursor-pointer rounded-full bg-tertiary text-white relative"
       >
         <FaShoppingBasket size={25} className="text-xl" />
-        <label
-          htmlFor=""
-          className="absolute bottom-8 -right-2 text-xs font-bold text-tertiary"
-        >
-          {0}
-        </label>
+         <span
+          className={`absolute bottom-6 -right-[-2px] text-xs font-bold ${totalItems > 0 ? "text-primary" : "text-tertiary"}`}
+        > 
+          {totalItems}
+        </span>
       </Link>
 
       {/* Auth */}

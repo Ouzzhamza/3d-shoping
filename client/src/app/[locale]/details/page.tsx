@@ -41,10 +41,7 @@ function Page() {
             />
             <ProductView id={selectedProduct?.id} path={currentPath} />
             <ProductOptions
-              colors={selectedProduct?.colors}
-              sizes={selectedProduct?.sizes}
-              price={selectedProduct?.price}
-              path={selectedProduct?.path}
+              Product={selectedProduct}
               setCurrentPath={(path) => handleSetCurrentPath(path)}
             />
           </div>

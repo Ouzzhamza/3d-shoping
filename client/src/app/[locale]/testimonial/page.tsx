@@ -10,9 +10,9 @@ function Page() {
 
   return (
     <section className="max-padd-container  mt-36">
-      <div className="max-padd-container2 h-screen">
+      <div className="max-padd-container2 min-h-[calc(100vh-200px)]">
         <Title title={t("Title")} titleStyle="w-fit" HeaderStyle="h2" />
-        <div className="flex flex-wrap gap-18 justify-between pb-12 mt-24">
+        <div className="flex flex-wrap gap-18 justify-between  mt-24">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}

@@ -34,7 +34,7 @@ function Page() {
     
   return (
     <section className="max-padd-container mt-36">
-      <div className="max-padd-container2 h-screen">
+      <div className="max-padd-container2 min-h-[calc(100vh-230px)]">
         <Title title={t("Title")} titleStyle="w-fit" HeaderStyle="h2" />
         {/* Contact Form */}
         <div className="flex gap-40 pt-16">
@@ -100,7 +100,6 @@ function Page() {
                 </div>
               </div>
 
-             
               <div>
                 <label className="block bold-18 mb-2 text-primary">
                   {t("Message")}
