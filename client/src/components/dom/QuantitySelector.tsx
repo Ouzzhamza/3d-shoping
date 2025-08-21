@@ -38,7 +38,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
    };
 
   return (
-    <div className="flex items-center rounded-3xl bg-bg-dark overflow-hidden py-1 px-3">
+    <div className="flex items-center justify-center rounded-3xl bg-bg-dark overflow-hidden py-1 px-3 w-[100px]">
       <button
         onClick={handleDecrease}
         disabled={disabled || quantity <= min}
@@ -56,7 +56,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         disabled={disabled}
         min={min}
         max={max}
-        className="w-12 h-10 text-center border-none outline-none text-white font-medium disabled:bg-gray-50 disabled:cursor-not-allowed [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        className="w-6 h-10 text-center border-none outline-none text-white font-medium disabled:bg-gray-50 disabled:cursor-not-allowed [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
       />
 
       <button

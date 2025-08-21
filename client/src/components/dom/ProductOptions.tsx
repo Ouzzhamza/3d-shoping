@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ColorOption, ProductsType } from "@/types/global";
 import React, { useState } from "react";
@@ -17,12 +17,10 @@ function ProductOptions({
   Product: ProductsType | null;
   setCurrentPath?: (path: string) => void;
 }) {
-
-
-     // If no price, show skeleton for everything
-     if (!Product) {
-       return <ProductOptionsSkelton />;
-     }
+  // If no price, show skeleton for everything
+  if (!Product) {
+    return <ProductOptionsSkelton />;
+  }
   const t = useTranslations("Details");
 
   const {
@@ -38,9 +36,7 @@ function ProductOptions({
   const [selectedColor, setSelectedColor] = useState<ColorOption | null>(
     colors?.[0] || null
   );
-  const [selectedSize, setSelectedSize] = useState<string>(
-    sizes?.[0]
-  );
+  const [selectedSize, setSelectedSize] = useState<string>(sizes?.[0]);
 
   const [quantity, setQuantity] = useState<number>(1);
   const [isAdding, setIsAdding] = useState<boolean>(false);
@@ -109,8 +105,6 @@ function ProductOptions({
     }
   };
 
-
-
   // If price exists, render real content
   return (
     <div className="h-full p-6 flex flex-col justify-center space-y-8 z-10">
@@ -147,7 +141,7 @@ function ProductOptions({
       {/* Price Display */}
       <div className="flex items-center justify-between">
         <div
-          className="text-2xl font-bold"
+          className="text-2xl font-bold min-w-[140px]"
           style={{ color: "var(--color-primary)" }}
         >
           {price.replace(/[\d.]+/, (match) =>
@@ -164,9 +158,8 @@ function ProductOptions({
         {/* </div> */}
         <button
           onClick={handleAddToCart}
-          disabled={isAdding} // prevent multiple clicks
-          className={`
-    py-3 px-6 rounded-full font-medium transition-colors duration-200 flex-shrink-0 cursor-pointer
+          disabled={isAdding}
+          className={` min-w-[140px] py-3 px-6 rounded-full font-medium transition-colors duration-200 flex-shrink-0 cursor-pointer
     ${isAdding ? "opacity-70 cursor-not-allowed bg-gray-400 text-white" : ""}
     ${
       justAdded

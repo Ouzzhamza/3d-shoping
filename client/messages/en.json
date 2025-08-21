@@ -96,5 +96,28 @@
       "Added":"Added!",
       "Color": "Color",
       "Size": "Size"
+    },
+    "Cart": {
+      "Cart": "Cart",
+      "Address": "Address",
+      "Payment": "Payment",
+      "Size": "Size",
+      "Color": "Color",
+      "Coupons": "Coupons",
+      "Apply": "Apply",
+      "Gifting": "Gifting",
+      "BuyingForALovedOne":"Buying for a loved one?",
+      "SendPersonalizedMessageAt": "Send personalized message at",
+      "AddGiftWrap": "Add gift wrap",
+      "FreeDelivery": "Free Delivery",
+      "TotalAmount":"Total Amount",
+      "PlaceOrder": "Place order",
+      "FullName": "Full Name",
+      "AddressLine": " Address Line",
+      "Country":"Country",
+      "City": "City",
+      "ZipCode":"Zip Code",
+      "Next": "Next",
+      "Previous": "Previous"
     }
 }
