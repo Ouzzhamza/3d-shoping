@@ -92,6 +92,8 @@
     "Details": {
       "Title": "Product Details",
       "AddToCart": "Add to cart",
+      "Adding":"Adding...",
+      "Added":"Added!",
       "Color": "Color",
       "Size": "Size"
     }

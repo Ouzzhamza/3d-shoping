@@ -1,3 +1,5 @@
+"use client"
+
 import { ColorOption, ProductsType } from "@/types/global";
 import React, { useState } from "react";
 import ProductOptionsSkelton from "../ui/ProductOptionsSkelton";
@@ -16,7 +18,11 @@ function ProductOptions({
   setCurrentPath?: (path: string) => void;
 }) {
 
-   if (!Product) return null;
+
+     // If no price, show skeleton for everything
+     if (!Product) {
+       return <ProductOptionsSkelton />;
+     }
   const t = useTranslations("Details");
 
   const {
@@ -103,10 +109,7 @@ function ProductOptions({
     }
   };
 
-  // If no price, show skeleton for everything
-  if (!price) {
-    return <ProductOptionsSkelton />;
-  }
+
 
   // If price exists, render real content
   return (
@@ -161,13 +164,18 @@ function ProductOptions({
         {/* </div> */}
         <button
           onClick={handleAddToCart}
-          className="py-3 px-6 rounded-full font-medium transition-colors duration-200 flex-shrink-0 cursor-pointer"
-          style={{
-            backgroundColor: "var(--color-bg-dark)",
-            color: "var(--color-primary)",
-          }}
+          disabled={isAdding} // prevent multiple clicks
+          className={`
+    py-3 px-6 rounded-full font-medium transition-colors duration-200 flex-shrink-0 cursor-pointer
+    ${isAdding ? "opacity-70 cursor-not-allowed bg-gray-400 text-white" : ""}
+    ${
+      justAdded
+        ? "bg-green-600 text-white"
+        : "bg-[var(--color-bg-dark)] text-[var(--color-primary)]"
+    }
+  `}
         >
-          {t("AddToCart")}
+          {isAdding ? t("Adding") : justAdded ? t("Added") : t("AddToCart")}
         </button>
       </div>
     </div>
