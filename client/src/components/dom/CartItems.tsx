@@ -7,8 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 function CartItems() {
-  const { removeFromCart, updateQuantity, clearCart, calculateTotals, items } =
-    useCartStore();
+
+  const { removeFromCart, updateQuantity, items } = useCartStore();
 
   const t = useTranslations("Cart")
 

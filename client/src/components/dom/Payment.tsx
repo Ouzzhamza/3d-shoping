@@ -12,10 +12,10 @@ type PaymentInputs = {
 type PaymentProps = {
   prevStep: () => void;
   nextStep: () => void;
-//   onPay: (data: PaymentInputs) => void;
-//   subtotal: number;
-//   shipping: number;
-//   tax: number;
+  //   onPay: (data: PaymentInputs) => void;
+  //   subtotal: number;
+  //   shipping: number;
+  //   tax: number;
 };
 
 function Payment({ prevStep, nextStep }: PaymentProps) {
@@ -29,7 +29,7 @@ function Payment({ prevStep, nextStep }: PaymentProps) {
     // onPay(data);
   };
 
-//   const total = subtotal + shipping + tax;
+  //   const total = subtotal + shipping + tax;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">

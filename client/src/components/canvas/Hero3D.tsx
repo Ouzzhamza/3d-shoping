@@ -1,19 +1,10 @@
 "use client";
 
 import React, { Suspense } from "react";
-import {
-  OrbitControls,
-
-  Environment,
-  PerspectiveCamera,
-
-} from "@react-three/drei";
-
 import dynamic from "next/dynamic";
 
 import { Spinner3D } from "./Spinner3D";
 
-// Dynamic import for T-shirt component
 const Model3D = dynamic(
   () => import("@/components/canvas/models/Model3D").then((mod) => mod.Model3D),
   {

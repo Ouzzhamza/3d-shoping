@@ -48,7 +48,7 @@ function Hero() {
 
       {/* Video/Content Section */}
       <div className="relative flex flex-col justify-center items-center w-full md:w-1/2 h-1/2 md:h-full ">
-        <div className="relative w-full h-full  bg-transparent flex justify-center items-center">
+        <div className="relative w-full h-full bg-transparent flex justify-center items-center">
           <View
             style={{
               width: "100%",

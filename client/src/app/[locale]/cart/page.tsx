@@ -1,68 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
-import { steps } from "../../../../public/data";
-import Stepper from "@/components/dom/Stepper";
+import React from "react";
 import { useCartStore } from "@/zustand/store";
-import CartItems from "@/components/dom/CartItems";
-import PriceDetails from "@/components/dom/PriceDetails";
-import ShippingAddress from "@/components/dom/ShippingAddress";
-import Payment from "@/components/dom/Payment";
+import Cart from "@/components/dom/Cart";
+import EmptyCart from "@/components/canvas/EmptyCart";
 
 function Page() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const { items } = useCartStore();
 
-  const nextStep = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  const goToStep = (stepIndex: number) => {
-    setCurrentStep(stepIndex);
-  };
+  console.log(items);
 
   return (
     <section className="max-padd-container mt-36">
-      <div className="max-padd-container2 min-h-[calc(100vh-150px)] flex flex-col">
-        <Stepper
-          steps={steps}
-          currentStep={currentStep}
-          nextStep={nextStep}
-          prevStep={prevStep}
-          goToStep={goToStep}
-        />
-        <div className="w-full max-padd-container2">
-          {currentStep === 0 && (
-            <div className="flex flex-1 h-[calc(100vh-280px)] gap-20">
-              <CartItems />
-              <div className="w-1/3">
-                <PriceDetails nextStep={nextStep} />
-              </div>
-            </div>
-          )}
-          {currentStep === 1 && (
-            <div className="h-[calc(100vh-280px)] flex justify-center items-center px-[300px]">
-              <div className="w-full h-full rounded-3xl border-primary-2 backdrop-blur-3xl flex justify-center relative">
-                <ShippingAddress nextStep={nextStep} prevStep={prevStep} />
-              </div>
-            </div>
-          )}
-          {currentStep === 2 && (
-            <div className="h-[calc(100vh-280px)] flex justify-center items-center px-[300px]">
-              <div className="w-full h-full rounded-3xl border-primary-2 backdrop-blur-3xl flex justify-center relative">
-                <Payment nextStep={nextStep} prevStep={prevStep} />
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+      {items.length !== 0 ? <Cart /> : <EmptyCart />}
     </section>
   );
 }
