@@ -16,7 +16,7 @@ function Page() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="w-full max-w-[420px] space-y-4 p-3 border border-primary  text-light bold-14 backdrop-blur-2xl"
+              className="w-full max-w-[420px] space-y-4 p-10 border border-primary  text-light bold-14 backdrop-blur-2xl"
             >
               <div className="flex justify-between items-center">
                 <div className="flex gap-1">

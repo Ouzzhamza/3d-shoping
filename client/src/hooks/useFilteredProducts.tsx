@@ -39,7 +39,6 @@ export function useFilteredProducts(category?: string) {
     totalItems,
     totalPages,
     currentPage,
-    itemsPerPage,
     setCurrentPage,
   } = usePagination(filteredProducts, 15, [searchQuery, category]);
 
@@ -60,7 +59,6 @@ export function useFilteredProducts(category?: string) {
     totalItems,
     totalPages,
     currentPage,
-    itemsPerPage,
     setCurrentPage,
     activeRenderId,
     handleToggleRenderType,

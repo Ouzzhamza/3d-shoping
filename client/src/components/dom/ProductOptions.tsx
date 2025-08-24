@@ -8,7 +8,8 @@ import ColorSelection from "./ColorSelection";
 import SizeSelection from "./SizeSelection";
 import { useTranslations } from "next-intl";
 import QuantitySelector from "./QuantitySelector";
-import { useCartStore } from "@/zustand/store";
+import { useCartStore } from "@/zustand/CartStore";
+import { useAuthStore, useDialogStore } from "@/zustand/AuthStore";
 
 function ProductOptions({
   Product,
@@ -17,11 +18,24 @@ function ProductOptions({
   Product: ProductsType | null;
   setCurrentPath?: (path: string) => void;
 }) {
-  // If no price, show skeleton for everything
+  const t = useTranslations("Details");
+  const { isAuthenticated } = useAuthStore();
+  const { openDialog } = useDialogStore();
+  const { addToCart } = useCartStore();
+
+  const [selectedColor, setSelectedColor] = useState<ColorOption | null>(
+    Product?.colors?.[0] || null
+  );
+  const [selectedSize, setSelectedSize] = useState<string>(
+    Product?.sizes?.[0] || ""
+  );
+  const [quantity, setQuantity] = useState<number>(1);
+  const [isAdding, setIsAdding] = useState<boolean>(false);
+  const [justAdded, setJustAdded] = useState<boolean>(false);
+
   if (!Product) {
     return <ProductOptionsSkelton />;
   }
-  const t = useTranslations("Details");
 
   const {
     colors,
@@ -32,17 +46,6 @@ function ProductOptions({
     name: productName,
     productImg,
   } = Product;
-
-  const [selectedColor, setSelectedColor] = useState<ColorOption | null>(
-    colors?.[0] || null
-  );
-  const [selectedSize, setSelectedSize] = useState<string>(sizes?.[0]);
-
-  const [quantity, setQuantity] = useState<number>(1);
-  const [isAdding, setIsAdding] = useState<boolean>(false);
-  const [justAdded, setJustAdded] = useState<boolean>(false);
-
-  const { addToCart, totalItems } = useCartStore();
 
   const handleQuantityChange = (newQuantity: number) => {
     setQuantity(newQuantity);
@@ -59,6 +62,11 @@ function ProductOptions({
   };
 
   const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      openDialog("login");
+      return;
+    }
+
     if (!productId || !productName || !price) {
       console.error("Missing required product information");
       return;
@@ -82,7 +90,7 @@ function ProductOptions({
         path: selectedColor?.path || path,
       };
 
-      console.log(cartItem);
+      // console.log(cartItem);
       // Add to cart
       addToCart(cartItem);
 
@@ -105,7 +113,7 @@ function ProductOptions({
     }
   };
 
-  // If price exists, render real content
+  // Render the component
   return (
     <div className="h-full p-6 flex flex-col justify-center space-y-8 z-10">
       {/* Review Section */}
@@ -136,7 +144,6 @@ function ProductOptions({
           />
         </div>
       )}
-      {/* Quantity display */}
 
       {/* Price Display */}
       <div className="flex items-center justify-between">
@@ -149,24 +156,27 @@ function ProductOptions({
           )}
         </div>
 
-        {/* <div className=" h-full"> */}
         <QuantitySelector
           quantity={quantity}
           onQuantityChange={handleQuantityChange}
           disabled={isAdding}
         />
-        {/* </div> */}
+
         <button
           onClick={handleAddToCart}
           disabled={isAdding}
-          className={` min-w-[140px] py-3 px-6 rounded-full font-medium transition-colors duration-200 flex-shrink-0 cursor-pointer
-    ${isAdding ? "opacity-70 cursor-not-allowed bg-gray-400 text-white" : ""}
-    ${
-      justAdded
-        ? "bg-green-600 text-white"
-        : "bg-[var(--color-bg-dark)] text-[var(--color-primary)]"
-    }
-  `}
+          className={`min-w-[140px] py-3 px-6 rounded-full font-medium transition-colors duration-200 flex-shrink-0 cursor-pointer
+            ${
+              isAdding
+                ? "opacity-70 cursor-not-allowed bg-gray-400 text-white"
+                : ""
+            }
+            ${
+              justAdded
+                ? "bg-green-600 text-white"
+                : "bg-[var(--color-bg-dark)] text-[var(--color-primary)]"
+            }
+          `}
         >
           {isAdding ? t("Adding") : justAdded ? t("Added") : t("AddToCart")}
         </button>

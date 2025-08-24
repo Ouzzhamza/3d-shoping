@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useCartStore } from "@/zustand/store";
+import { useCartStore } from "@/zustand/CartStore";
 import Cart from "@/components/dom/Cart";
 import EmptyCart from "@/components/canvas/EmptyCart";
 

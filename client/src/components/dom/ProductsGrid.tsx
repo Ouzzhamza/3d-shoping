@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React from "react";
 import { View } from "@react-three/drei";
 import ProductPicture from "@/components/ui/ProductPicture";
 import IconSwitcher from "@/components/ui/IconSwitcher";

@@ -30,8 +30,6 @@ function Cart() {
       <Stepper
         steps={steps}
         currentStep={currentStep}
-        nextStep={nextStep}
-        prevStep={prevStep}
         goToStep={goToStep}
       />
       <div className="w-full max-padd-container2">
@@ -53,7 +51,7 @@ function Cart() {
         {currentStep === 2 && (
           <div className="h-[calc(100vh-280px)] flex justify-center items-center px-[300px]">
             <div className="w-full h-full rounded-3xl border-primary-2 backdrop-blur-3xl flex justify-center relative">
-              <Payment nextStep={nextStep} prevStep={prevStep} />
+              <Payment  prevStep={prevStep} />
             </div>
           </div>
         )}

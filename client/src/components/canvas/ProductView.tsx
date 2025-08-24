@@ -1,16 +1,8 @@
 import { View } from "@react-three/drei";
-import React, { Suspense } from "react";
-import Hero3D from "./Hero3D";
+import React from "react";
 import AnimatedModel from "./AnimatedProduct";
-import { Spinner3D } from "./Spinner3D";
 
-function ProductView({
-  id,
-  path,
-}: {
-  id?: number;
-  path?: string;
-}) {
+function ProductView({ path }: { path?: string }) {
   return (
     <div className="h-full w-full flex justify-center items-center">
       {/* Glowing Circle Container */}
@@ -44,7 +36,7 @@ function ProductView({
           position: "absolute",
         }}
       >
-          <AnimatedModel path={path} />
+        <AnimatedModel path={path} />
       </View>
     </div>
   );

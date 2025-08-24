@@ -4,11 +4,7 @@
 import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { View, Preload } from "@react-three/drei";
-import dynamic from "next/dynamic";
 
-const CommonScene = dynamic(() =>
-  import("@/components/canvas/controls/Common").then((mod) => mod.CommonScene)
-);
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null!);

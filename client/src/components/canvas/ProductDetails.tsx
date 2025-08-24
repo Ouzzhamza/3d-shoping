@@ -3,14 +3,16 @@
 import { ColorOption, ProductDetailsProps } from "@/types/global";
 import { useProductsStore } from "@/zustand/store";
 import { Html } from "@react-three/drei";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { PiEye } from "react-icons/pi";
 import ColorSelection from "../dom/ColorSelection";
+import { handleTransitionClick } from "@/lib/utils";
 
 function ProductDetails({ product, setCurrentPath }: ProductDetailsProps) {
   const { setSelectedProduct } = useProductsStore();
   const router = useRouter();
+  const pathname = usePathname();
 
   const [selectedColor, setSelectedColor] = useState<ColorOption>(
     product.colors[0]
@@ -22,9 +24,9 @@ function ProductDetails({ product, setCurrentPath }: ProductDetailsProps) {
     if (setCurrentPath) setCurrentPath(newPath);
   };
 
-  const handleViewMore = (id: number) => {
+  const handleViewMore = () => {
     setSelectedProduct(product);
-    router.push("/details");
+    handleTransitionClick("/details", pathname, router);
   };
 
   return (
@@ -47,7 +49,7 @@ function ProductDetails({ product, setCurrentPath }: ProductDetailsProps) {
           />
           <div className="flex flex-col items-end gap-4 ">
             <button className="bg-black/50 inline-flex text-white px-2 py-1 rounded-full text-sm w-min cursor-pointer">
-              <PiEye size={20} onClick={() => handleViewMore(product.id)} />
+              <PiEye size={20} onClick={() => handleViewMore()} />
             </button>
             <div className="bg-black/50 text-white px-3 py-1 rounded-full text-sm">
               {product.price}

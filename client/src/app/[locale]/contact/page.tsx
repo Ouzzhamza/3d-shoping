@@ -17,7 +17,11 @@ function Page() {
       message: "",
     });
 
-    const handleInputChange = (e: any) => {
+    const handleInputChange = (
+      e:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.ChangeEvent<HTMLTextAreaElement>
+    ) => {
       const { name, value } = e.target;
       setFormData((prev) => ({
         ...prev,

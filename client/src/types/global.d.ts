@@ -2,10 +2,7 @@
 import type { ReactNode } from "react";
 import { GroupProps } from "@react-three/fiber";
 
-
 declare global {
-
-    
   type Locale = (typeof routing.locales)[number];
 
   type LocaleParams = { locale: string };
@@ -14,7 +11,6 @@ declare global {
   //   children: ReactNode;
   //   params: LocaleParams;
   // };
-
 }
 
 export interface NavbarProps {
@@ -64,7 +60,6 @@ export interface MobileNavToggleProps {
   onClick: () => void;
 }
 
-
 export type NavbarButtonProps<T extends React.ElementType = "a"> = {
   as?: T;
   variant?: "primary" | "secondary" | "dark" | "gradient";
@@ -72,10 +67,9 @@ export type NavbarButtonProps<T extends React.ElementType = "a"> = {
   children?: React.ReactNode;
 } & Omit<React.ComponentPropsWithoutRef<T>, "as" | "className" | "children">;
 
-
-
 export type NavControllersProps = {
-  isAuthonticated: boolean;
+  isAuthenticated: boolean;
+  setisAuthenticated: (value: boolean) => void;
 };
 
 export type ObjectProps = GroupProps & {
@@ -86,7 +80,6 @@ export type ObjectProps = GroupProps & {
   // onError?: (productId: number, error: string) => void;
   // speed: Float;
 };
-
 
 export type ProductType =
   | "men"
@@ -118,62 +111,98 @@ type EnvironmentPreset =
   | "forest"
   | "lobby";
 
+export type Position3D = [number, number, number];
 
-  export type Position3D = [number, number, number];
+export interface ViewSceneProps {
+  boxColor: string;
+  ProductPosition?: Position3D;
+}
 
+export interface ColorOption {
+  id: string;
+  name: string;
+  color: string;
+  path?: string;
+}
 
-  export interface ViewSceneProps {
-    boxColor: string;
-    ProductPosition?: Position3D;
-  }
+export interface ProductsType {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  productImg: string;
+  originalPrice: string;
+  path: string;
+  sizes: string[];
+  colors: ColorOption[];
+  category?: string;
+}
 
+export type ProductProps = {
+  product: ProductsType;
+};
 
-  export interface ColorOption {
-    id: string;
-    name: string;
-    color: string;
-    path?: string;
-  }
+export type ProductDetailsProps = {
+  product: ProductsType;
+  setCurrentPath?: (path: string) => void;
+};
 
-  export interface ProductsType {
-    id: number;
-    name: string;
-    description: string;
-    price: string;
-    productImg: string;
-    originalPrice: string;
-    path: string;
-    sizes: string[];
-    colors: ColorOption[];
-    category?: string;
-  }
+export type LoaderProps = {
+  id: number;
+  productImg: string;
+  progresse?: number;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+};
 
-  export type ProductProps = {
-    product: ProductsType;
-  };
+export interface IconSwitcherProps {
+  toggleRenderType: () => void;
+  renderType: boolean;
+}
 
+export interface Login {
+  email: string;
+  password: string;
+}
 
-  export type ProductDetailsProps = {
-    product: ProductsType;
-    setCurrentPath?: (path: string) => void;
-  };
+export interface ShippingAddressInputs {
+  fullName: string;
+  addressLine: string;
+  country: string;
+  city: string;
+  zipCode: string;
+}
 
+export interface PaymentDetails {
+  method: "credit_card" | "paypal" | "stripe" | "cash_on_delivery";
+  cardNumber?: string;
+  expiryDate?: string;
+  cvv?: string;
+  cardHolderName?: string;
+  paypalEmail?: string;
+}
 
-  export type LoaderProps = {
-    id: number;
-    productImg: string;
-    progresse?: number;
-    onMouseEnter?: () => void;
-    onMouseLeave?: () => void;
-  };
+export type OrderStatus =
+  | "pending"
+  | "confirmed"
+  | "processing"
+  | "shipped"
+  | "delivered"
+  | "cancelled"
+  | "refunded";
 
-
-  export interface IconSwitcherProps {
-    toggleRenderType: () => void;
-    renderType: boolean;
-  }
-
-  export interface Login {
-    email: string;
-    password: string;
-  }
+export interface Order {
+  id: string;
+  orderNumber: string;
+  items: CartItem[];
+  totalItems: number;
+  totalPrice: number;
+  shippingAddress: ShippingAddress;
+  paymentDetails: Omit<PaymentDetails, "cardNumber" | "cvv">;
+  status: OrderStatus;
+  createdAt: Date;
+  updatedAt: Date;
+  estimatedDelivery?: Date;
+  trackingNumber?: string;
+  notes?: string;
+}

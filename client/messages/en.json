@@ -6,8 +6,17 @@
     "contact": "Contact",
     "orders": "Orders",
     "login": "Login",
-    "logout": "Logout",
+    "Logout": "Logout",
+    "MyOrders": "My Orders",
     "placeholder": "Search"
+  },
+  "Login": {
+    "SignUp1":"Don't have an account yet?",
+    "SignUp2":"Sign up",
+    "LoggingIn": " Logging in...",
+    "ForgotPassword": "Forgot your password?",
+    "Login":"Login"
+
   },
   "Hero": {
     "headline": "New Looks for Every Season",
@@ -118,6 +127,21 @@
       "City": "City",
       "ZipCode":"Zip Code",
       "Next": "Next",
-      "Previous": "Previous"
+      "Previous": "Previous",
+      "PayNow":"Pay Now",
+      "CardNumber":"Card Number",
+      "CVV": "CVV",
+      "OrderSummary": "Order Summary",
+      "Subtotal": "Subtotal",
+      "Shipping": "Shipping",
+      "Tax": "Tax",
+      "Total":"Total",
+      "ExpiryDate": "Expiry Date",
+      "EmptyCart1":"Your Cart is",
+      "EmptyCart2":"Empty",
+      "EmptyCart3":"Looks like you haven't added any items to your cart yet.",
+      "EmptyCart4":"Discover amazing products and start shopping!",
+      "EmptyCart5":"Start Shopping"
     }
 }
+

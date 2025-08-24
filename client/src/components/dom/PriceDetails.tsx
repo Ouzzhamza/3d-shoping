@@ -1,5 +1,5 @@
 "use client"
-import { useCartStore } from "@/zustand/store";
+import { useCartStore } from "@/zustand/CartStore";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { FaGift, FaArrowRight, FaTimes } from "react-icons/fa";

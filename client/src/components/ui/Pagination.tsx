@@ -7,10 +7,8 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  itemsPerPage: number;
   totalItems: number;
   className?: string;
-  showPageJump?: boolean;
   maxVisiblePages?: number;
 }
 
@@ -18,23 +16,20 @@ const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   totalPages,
   onPageChange,
-  itemsPerPage,
-  totalItems,
   className = "",
-  showPageJump = true,
   maxVisiblePages = 5,
 }) => {
   const t = useTranslations("Pagination");
 
   // Move state hooks to the top, before any conditional logic
-  const [pageInputValue, setPageInputValue] = React.useState<string>(
-    currentPage.toString()
-  );
+  // const [pageInputValue, setPageInputValue] = React.useState<string>(
+  //   currentPage.toString()
+  // );
 
-  // Update input value when currentPage changes
-  React.useEffect(() => {
-    setPageInputValue(currentPage.toString());
-  }, [currentPage]);
+  // // Update input value when currentPage changes
+  // React.useEffect(() => {
+  //   setPageInputValue(currentPage.toString());
+  // }, [currentPage]);
 
   // Calculate display range
   // const startIndex = (currentPage - 1) * itemsPerPage;
@@ -74,37 +69,36 @@ const Pagination: React.FC<PaginationProps> = ({
 
   const visiblePages = getVisiblePages();
 
-  const handlePageJump = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const value = event.target.value;
-    setPageInputValue(value);
+  // const handlePageJump = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  //   const value = event.target.value;
+  //   setPageInputValue(value);
 
-    // Only update page if it's a valid number within range
-    const page = parseInt(value);
-    if (!isNaN(page) && page >= 1 && page <= totalPages) {
-      onPageChange(page);
-    }
-  };
+  //   const page = parseInt(value);
+  //   if (!isNaN(page) && page >= 1 && page <= totalPages) {
+  //     onPageChange(page);
+  //   }
+  // };
 
-  const handlePageInputBlur = (): void => {
-    // Reset to current page if input is invalid
-    const page = parseInt(pageInputValue);
-    if (isNaN(page) || page < 1 || page > totalPages) {
-      setPageInputValue(currentPage.toString());
-    }
-  };
+  // const handlePageInputBlur = (): void => {
+  //   // Reset to current page if input is invalid
+  //   const page = parseInt(pageInputValue);
+  //   if (isNaN(page) || page < 1 || page > totalPages) {
+  //     setPageInputValue(currentPage.toString());
+  //   }
+  // };
 
-  const handlePageInputKeyDown = (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ): void => {
-    if (event.key === "Enter") {
-      const page = parseInt(pageInputValue);
-      if (!isNaN(page) && page >= 1 && page <= totalPages) {
-        onPageChange(page);
-      } else {
-        setPageInputValue(currentPage.toString());
-      }
-    }
-  };
+  // const handlePageInputKeyDown = (
+  //   event: React.KeyboardEvent<HTMLInputElement>
+  // ): void => {
+  //   if (event.key === "Enter") {
+  //     const page = parseInt(pageInputValue);
+  //     if (!isNaN(page) && page >= 1 && page <= totalPages) {
+  //       onPageChange(page);
+  //     } else {
+  //       setPageInputValue(currentPage.toString());
+  //     }
+  //   }
+  // };
 
   // Move the conditional return to the end, after all hooks have been called
   if (totalPages <= 1) return null;

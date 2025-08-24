@@ -1,5 +1,7 @@
 "use client";
 
+import { useCartStore } from "@/zustand/CartStore";
+import { useTranslations } from "next-intl";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -11,25 +13,30 @@ type PaymentInputs = {
 
 type PaymentProps = {
   prevStep: () => void;
-  nextStep: () => void;
+  // nextStep: () => void;
   //   onPay: (data: PaymentInputs) => void;
   //   subtotal: number;
   //   shipping: number;
   //   tax: number;
 };
 
-function Payment({ prevStep, nextStep }: PaymentProps) {
+function Payment({ prevStep }: PaymentProps) {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<PaymentInputs>({ mode: "onChange" });
 
+  const { totalPrice } = useCartStore();
+
+  const t = useTranslations("Cart");
+
   const onSubmit = (data: PaymentInputs) => {
     // onPay(data);
+    console.log(data)
   };
 
-  //   const total = subtotal + shipping + tax;
+  const total = totalPrice + 100 + 10;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
@@ -40,7 +47,7 @@ function Payment({ prevStep, nextStep }: PaymentProps) {
             htmlFor="cardNumber"
             className="block mb-2 text-white font-semibold"
           >
-            Card Number
+            {t("CardNumber")}
           </label>
           <input
             id="cardNumber"
@@ -72,7 +79,7 @@ function Payment({ prevStep, nextStep }: PaymentProps) {
               htmlFor="expiryDate"
               className="block mb-2 text-white font-semibold"
             >
-              Expiry Date
+              {t("ExpiryDate")}
             </label>
             <input
               id="expiryDate"
@@ -102,7 +109,7 @@ function Payment({ prevStep, nextStep }: PaymentProps) {
               htmlFor="cvv"
               className="block mb-2 text-white font-semibold"
             >
-              CVV
+              {t("CVV")}
             </label>
             <input
               id="cvv"
@@ -128,23 +135,23 @@ function Payment({ prevStep, nextStep }: PaymentProps) {
 
         {/* Order Summary */}
         <div className="w-full bg-gray-900/50 border border-gray-700 rounded-lg p-6 text-white">
-          <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+          <h2 className="text-xl font-bold mb-4">{t("OrderSummary")}</h2>
           <ul className="space-y-2">
             <li className="flex justify-between">
-              <span>Subtotal:</span>
-              {/* <span>${subtotal.toFixed(2)}</span> */}
+              <span>{t("Subtotal")}:</span>
+              <span>${totalPrice.toFixed(2)}</span>
             </li>
             <li className="flex justify-between">
-              <span>Shipping:</span>
-              {/* <span>${shipping.toFixed(2)}</span> */}
+              <span>{t("Shipping")}:</span>
+              <span>$100</span>
             </li>
             <li className="flex justify-between">
-              <span>Tax:</span>
-              {/* <span>${tax.toFixed(2)}</span> */}
+              <span>{t("Tax")}:</span>
+              <span>$10</span>
             </li>
             <li className="flex justify-between text-lg font-semibold border-t border-gray-600 mt-4 pt-4">
-              <span>Total:</span>
-              {/* <span>${total.toFixed(2)}</span> */}
+              <span>{t("Total")}:</span>
+              <span>${total.toFixed(2)}</span>
             </li>
           </ul>
         </div>
@@ -156,7 +163,7 @@ function Payment({ prevStep, nextStep }: PaymentProps) {
             className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300"
             onClick={prevStep}
           >
-            Previous
+            {t("Previous")}
           </button>
           <button
             type="submit"
@@ -167,7 +174,7 @@ function Payment({ prevStep, nextStep }: PaymentProps) {
                 : "bg-primary hover:bg-primary-dark text-black"
             }`}
           >
-            Pay Now
+            {t("PayNow")}
           </button>
         </div>
       </div>

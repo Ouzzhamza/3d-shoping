@@ -1,4 +1,4 @@
-import { useCartStore } from "@/zustand/store";
+import { useCartStore } from "@/zustand/CartStore";
 import React from "react";
 import Image from "next/image";
 import { FaXmark } from "react-icons/fa6";
@@ -7,10 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 function CartItems() {
-
   const { removeFromCart, updateQuantity, items } = useCartStore();
 
-  const t = useTranslations("Cart")
+  const t = useTranslations("Cart");
 
   const handleQuantityDecrease = (itemId: string) => {
     const item = items.find((item) => item.variantKey === itemId);
@@ -22,7 +21,7 @@ function CartItems() {
   const handleQuantityIncrease = (itemId: string) => {
     const item = items.find((item) => item.variantKey === itemId);
     if (item) {
-      console.log("here updating");
+      // console.log("here updating");
       updateQuantity(itemId, item.quantity + 1);
     }
   };
@@ -31,7 +30,7 @@ function CartItems() {
     <div className="w-2/3 border-primary-2 rounded-3xl backdrop-blur-3xl overflow-auto">
       <div className="space-y-4 p-4 overflow-auto">
         <AnimatePresence mode="popLayout">
-          {items.map((item, index) => (
+          {items.map((item) => (
             <motion.div
               key={item.variantKey}
               layout

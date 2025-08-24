@@ -39,7 +39,7 @@ function Page() {
               Title={selectedProduct?.name}
               Description={selectedProduct?.description}
             />
-            <ProductView id={selectedProduct?.id} path={currentPath} />
+            <ProductView  path={currentPath} />
             <ProductOptions
               Product={selectedProduct}
               setCurrentPath={(path) => handleSetCurrentPath(path)}

@@ -1,15 +1,26 @@
 "use client";
 
-import Link from "next/link";
 import React from "react";
 import { useTranslations } from "next-intl";
 import { View } from "@react-three/drei";
 import Hero3D from "../canvas/Hero3D";
+import { useRouter, usePathname } from "next/navigation";
+import { getPathWithoutLocale } from "@/lib/utils";
+import { handleTransitionClick } from "@/lib/utils";
 
 
 
 function Hero() {
+  
   const t = useTranslations("Hero");
+  const pathname = usePathname();
+  const router = useRouter()
+
+   const handleShopClick = (path: string) => {
+       const currentPathWithoutLocale = getPathWithoutLocale(pathname);
+      //  console.log(path, currentPathWithoutLocale);
+       handleTransitionClick(path, currentPathWithoutLocale, router);
+     };
   //  const [isLoading, setIsLoading] = useState(true);
   return (
     <section className="max-padd-container w-full h-screen flex flex-col md:flex-row gap-8 md:gap-0">
@@ -38,12 +49,13 @@ function Hero() {
           </span>
         </div>
 
-        <Link
-          href={"/collections"}
+        <button
+        onClick={() => handleShopClick("/collection")}
+          // href={"/collections"}
           className="inline-flex btn-dark text-white flexCenter bold-20 w-40 sm:w-48 lg:w-52 text-sm sm:text-base py-2 sm:py-3 !rounded-full"
         >
           Shop now
-        </Link>
+        </button>
       </div>
 
       {/* Video/Content Section */}

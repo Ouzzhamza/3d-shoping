@@ -8,24 +8,19 @@ import {
   MobileNavToggleProps,
   NavbarProps,
   NavBodyProps,
-  NavControllersProps,
   NavItemsProps,
 } from "@/types/global";
 import { IconMenu2, IconX } from "@tabler/icons-react";
-import {
-  motion,
-  AnimatePresence,
-} from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
-import Image from "next/image";
 import { FaSearch, FaShoppingBasket } from "react-icons/fa";
-import { RiUserLine } from "react-icons/ri";
-import userImg from "/public/images/user.png";
 import { usePathname, useRouter } from "next/navigation";
-import { useCartStore } from "@/zustand/store";
-
+import { useCartStore } from "@/zustand/CartStore";
+import UserDropdown from "./useDropDown";
+import { getPathWithoutLocale } from "@/lib/utils";
+import { useAuthStore, useDialogStore } from "@/zustand/AuthStore";
 
 export const useHeaderTranslations = () => {
   return useTranslations("Header");
@@ -33,13 +28,13 @@ export const useHeaderTranslations = () => {
 
 export const useAppRouter = () => {
   const router = useRouter();
+
   return router;
 };
 
-
 export const Navbar: React.FC<NavbarProps> = ({ children, className }) => {
   const ref = useRef(null);
-  
+
   return (
     <motion.div
       ref={ref}
@@ -53,13 +48,9 @@ export const Navbar: React.FC<NavbarProps> = ({ children, className }) => {
   );
 };
 
-export const NavBody: React.FC<NavBodyProps> = ({
-  children,
-  className,
-}) => {
+export const NavBody: React.FC<NavBodyProps> = ({ children, className }) => {
   return (
     <motion.div
-      
       className={cn(
         "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-6 lg:flex border-primary-2 backdrop-blur-md",
         className
@@ -70,19 +61,16 @@ export const NavBody: React.FC<NavBodyProps> = ({
   );
 };
 
-export const NavItems: React.FC<NavItemsProps> = ({
-  items,
-  className,
-}) => {
+export const NavItems: React.FC<NavItemsProps> = ({ items, className }) => {
   const [hovered, setHovered] = useState<number | null>(null);
-
   const t = useHeaderTranslations();
   const router = useAppRouter();
-
   const pathname = usePathname();
-  const lastSegment = pathname.slice(pathname.lastIndexOf("/"));
+
   const onItemClick = (path: string) => {
-    handleTransitionClick(path, lastSegment, router);
+    const currentPathWithoutLocale = getPathWithoutLocale(pathname);
+    // console.log(path, currentPathWithoutLocale);
+    handleTransitionClick(path, currentPathWithoutLocale, router);
   };
 
   return (
@@ -94,8 +82,8 @@ export const NavItems: React.FC<NavItemsProps> = ({
       )}
     >
       {items.map((item, idx) => (
-        <Link
-          href={item.link}
+        <button
+          // href={item.link}
           key={`link-${idx}`}
           onClick={() => onItemClick(item.link)}
           onMouseEnter={() => setHovered(idx)}
@@ -110,12 +98,11 @@ export const NavItems: React.FC<NavItemsProps> = ({
           <span className="relative z-20 px-3 py-2 rounded-md uppercase text-md font-bold transition-colors duration-500 hover:bg-tertiary/50 hover:text-black">
             {t(item.name)}
           </span>
-        </Link>
+        </button>
       ))}
     </motion.div>
   );
 };
-
 
 export const MobileNav: React.FC<MobileNavProps> = ({
   children,
@@ -135,15 +122,27 @@ export const MobileNav: React.FC<MobileNavProps> = ({
   );
 };
 
-export const NavControllers: React.FC<NavControllersProps> = ({ isAuthonticated }) => {
-
+export const NavControllers: React.FC = ({}) => {
   const t = useHeaderTranslations();
-  const router = useAppRouter();
   const [showSearch, setShowSearch] = useState<boolean>(false);
-  const {totalItems} = useCartStore();
+  const { totalItems } = useCartStore();
+  const router = useAppRouter();
+  const pathname = usePathname();
+  const { isAuthenticated } = useAuthStore();
+  const { openDialog } = useDialogStore();
+
+  const handleCartClick = (path: string) => {
+    if (!isAuthenticated) {
+      openDialog("login");
+       return;
+    }
+    const currentPathWithoutLocale = getPathWithoutLocale(pathname);
+    // console.log(path, currentPathWithoutLocale);
+    handleTransitionClick(path, currentPathWithoutLocale, router);
+  };
 
   return (
-    <div className="flex items-center gap-4 p-4">
+    <div className="flex items-center gap-4 p-4 relative">
       <div className="relative flex gap-4">
         <div
           className={`${
@@ -171,37 +170,22 @@ export const NavControllers: React.FC<NavControllersProps> = ({ isAuthonticated 
       </div>
 
       {/* Cart icon */}
-      <Link
-        href={"/cart"}
+      <button
+        onClick={() => handleCartClick("/cart")}
         className="flex gap-2 items-center p-2 cursor-pointer rounded-full bg-tertiary text-white relative"
       >
         <FaShoppingBasket size={25} className="text-xl" />
-         <span
-          className={`absolute bottom-6 -right-[-2px] text-xs font-bold ${totalItems > 0 ? "text-primary" : "text-tertiary"}`}
-        > 
-          {totalItems}
+        <span
+          className={`absolute bottom-6 -right-[-2px] text-xs font-bold ${
+            totalItems > 0 ? "text-primary" : "text-tertiary"
+          }`}
+        >
+          {isAuthenticated ? totalItems : 0}
         </span>
-      </Link>
+      </button>
 
       {/* Auth */}
-      <div>
-        {isAuthonticated ? (
-          <div className="flex gap-2 items-center cursor-pointer rounded-full bg-tertiary">
-            <Image src={userImg} alt="User" height={44} width={44} />
-          </div>
-        ) : (
-          <button
-            onClick={() => router.push("/login")}
-            className="btn-dark bold-16 flexCenter gap-x-2 !rounded-full"
-          >
-            {t("login")}
-            {/* Icon for mobile only */}
-            <span className="xl:hidden">
-              <RiUserLine className="text-xl" />
-            </span>
-          </button>
-        )}
-      </div>
+      <UserDropdown />
     </div>
   );
 };
@@ -256,8 +240,6 @@ export const MobileNavToggle: React.FC<MobileNavToggleProps> = ({
     <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
   );
 };
-
-
 
 export const NavbarLogo = () => {
   return (

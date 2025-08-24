@@ -2,32 +2,28 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BsBag } from "react-icons/bs";
-
-
+import { usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { handleTransitionClick } from "@/lib/utils";
 
 function EmptyCart() {
   const containerRef = useRef(null);
   const iconRef = useRef(null);
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
-  const buttonRef = useRef(null);
   const decorRef = useRef(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const t = useTranslations("Cart");
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     // Set initial states
-    gsap.set(
-      [
-        iconRef.current,
-        titleRef.current,
-        descriptionRef.current,
-      ],
-      {
-        opacity: 0,
-        y: 50,
-      }
-    );
+    gsap.set([iconRef.current, titleRef.current, descriptionRef.current], {
+      opacity: 0,
+      y: 50,
+    });
 
     gsap.set(decorRef.current, {
       opacity: 0,
@@ -67,8 +63,7 @@ function EmptyCart() {
           duration: 0.6,
         },
         "-=0.2"
-      )
-     
+      );
 
     // Floating animation for the cart icon
     gsap.to(iconRef.current, {
@@ -79,9 +74,6 @@ function EmptyCart() {
       ease: "sine.inOut",
       delay: 1,
     });
-
-    // Pulse animation for decorative elements
-  
 
     return () => {
       tl.kill();
@@ -112,8 +104,8 @@ function EmptyCart() {
           ref={titleRef}
           className="text-3xl md:text-4xl font-bold text-text-light mb-4 leading-tight"
         >
-          Your Cart is
-          <span className="block text-primary mt-1">Empty</span>
+          {t("EmptyCart1")}
+          <span className="block text-primary mt-1">{t("EmptyCart2")}</span>
         </h1>
 
         {/* Description */}
@@ -121,23 +113,20 @@ function EmptyCart() {
           ref={descriptionRef}
           className="text-text-light text-lg mb-8 leading-relaxed"
         >
-          Looks like you haven't added any items to your cart yet.
-          <span className="block mt-2">
-            Discover amazing products and start shopping!
-          </span>
+          {t("EmptyCart3")}
+          <span className="block mt-2">{t("EmptyCart4")}</span>
         </p>
 
         {/* Call to action button */}
         <button
           className="relative inline-flex items-center justify-center px-8 py-4 w-[250px] font-semibold text-black bg-primary rounded-full shadow-lg overflow-hidden cursor-pointer"
           onClick={() => {
-            // Add navigation logic here
-            console.log("Navigate to shop");
+            handleTransitionClick("/collection", pathname, router);
           }}
         >
           <span className="relative z-10 flex items-center ">
             <BsBag className="w-5 h-5 mr-2" />
-            Start Shopping
+            {t("EmptyCart5")}
           </span>
         </button>
       </div>

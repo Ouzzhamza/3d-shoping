@@ -2,12 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
-import { Html } from "@react-three/drei";
 import { ProductProps } from "@/types/global";
 import { PiEye } from "react-icons/pi";
 import { usePathname, useRouter } from "next/navigation";
 import { useProductsStore } from "@/zustand/store";
 import { handleTransitionClick } from "@/lib/utils";
+import { getPathWithoutLocale } from "@/lib/utils";
 
 
 function ProductPicture({ product }: ProductProps) {
@@ -15,12 +15,11 @@ function ProductPicture({ product }: ProductProps) {
   const { setSelectedProduct } = useProductsStore();
     const router = useRouter();
     const pathname = usePathname();
-    const lastSegment = pathname.slice(pathname.lastIndexOf("/"));
+   const currentPathWithoutLocale = getPathWithoutLocale(pathname);
 
-   const handleViewMore = (id: number) => {
-    //  console.log("details");
+   const handleViewMore = () => {
      setSelectedProduct(product);
-     handleTransitionClick("/details", lastSegment, router);
+     handleTransitionClick("/details", currentPathWithoutLocale, router);
      
    };
 
@@ -58,7 +57,7 @@ function ProductPicture({ product }: ProductProps) {
           <div className="flex flex-col items-end gap-4">
             {/* Only this div can receive pointer events */}
             <div className="bg-black/50 inline-flex text-white px-2 py-1 rounded-full text-sm w-min cursor-pointer">
-              <PiEye size={20} onClick={() => handleViewMore(product.id)} />
+              <PiEye size={20} onClick={() => handleViewMore()} />
             </div>
             <div className="bg-black/50 text-white px-3 py-1 rounded-full text-sm">
               {product.price}

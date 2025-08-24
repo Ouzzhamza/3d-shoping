@@ -12,16 +12,12 @@ export interface Step {
 interface StepperProps {
   steps: Step[];
   currentStep: number;
-  nextStep: () => void;
-  prevStep: () => void;
   goToStep: (stepIndex: number) => void;
 }
 
 function Stepper({
   steps,
   currentStep,
-  nextStep,
-  prevStep,
   goToStep,
 }: StepperProps) {
 

@@ -13,7 +13,6 @@ function Page() {
     totalItems,
     totalPages,
     currentPage,
-    itemsPerPage,
     setCurrentPage,
     activeRenderId,
     handleToggleRenderType,
@@ -40,7 +39,6 @@ function Page() {
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={setCurrentPage}
-          itemsPerPage={itemsPerPage}
           totalItems={totalItems}
           className="mt-8"
         />

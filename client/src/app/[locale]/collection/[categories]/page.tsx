@@ -3,7 +3,6 @@
 import { useParams } from "next/navigation";
 import React from "react";
 
-import Products from "../../../../../public/data";
 import { useTranslations } from "next-intl";
 import Title from "@/components/dom/Title";
 import { useFilteredProducts } from "@/hooks/useFilteredProducts";
@@ -22,7 +21,7 @@ const category = Array.isArray(params?.categories)
     totalItems,
     totalPages,
     currentPage,
-    itemsPerPage,
+    // itemsPerPage,
     setCurrentPage,
     activeRenderId,
     handleToggleRenderType,
@@ -51,7 +50,7 @@ const category = Array.isArray(params?.categories)
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={setCurrentPage}
-        itemsPerPage={itemsPerPage}
+        // itemsPerPage={itemsPerPage}
         totalItems={totalItems}
         className="mt-8 pb-10"
       />

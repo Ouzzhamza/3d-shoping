@@ -3,20 +3,22 @@
 import { animationPageIn } from "@/lib/utils"
 import { useEffect, useRef } from "react"
 import { setBannersRef } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export default function Template({children}: {children: React.ReactNode}) {
-
-     const bannersRef = useRef<HTMLDivElement>(null);
-     const contentRef = useRef<HTMLDivElement>(null);
+  
+  const bannersRef = useRef<HTMLDivElement>(null);
+  
+  const contentRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
      
     useEffect(() => {
-      
-        // console.log("Template mounted");
+      console.log("hello")
         setBannersRef(bannersRef);
         animationPageIn(bannersRef);
 
-    }, [])
+    }, [pathname])
 
     return (
       <div className="relative">

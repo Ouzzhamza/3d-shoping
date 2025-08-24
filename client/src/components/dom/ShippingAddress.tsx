@@ -3,14 +3,15 @@
 import { useTranslations } from "next-intl";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { ShippingAddressInputs } from "@/types/global";
 
-type PaymentAddressInputs = {
-  fullName: string;
-  addressLine: string;
-  country: string;
-  city: string;
-  zipCode: string;
-};
+// type ShippingAddress = {
+//   fullName: string;
+//   addressLine: string;
+//   country: string;
+//   city: string;
+//   zipCode: string;
+// };
 
 function ShippingAddress({
   nextStep,
@@ -23,11 +24,11 @@ function ShippingAddress({
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<PaymentAddressInputs>({
+  } = useForm<ShippingAddressInputs>({
     mode: "onChange", 
   });
 
-  const onSubmit = async (data: PaymentAddressInputs) => {
+  const onSubmit = async (data: ShippingAddressInputs) => {
     try {
       console.log("data", data);
       nextStep(); 

@@ -7,11 +7,11 @@ import "../globals.css";
 import { ReactNode } from "react";
 import { Layout } from "@/components/dom/Layout";
 import Footer from "@/components/dom/Footer";
+import { GlobalDialogs } from "@/components/dom/GlobalDialogs";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
-// Option 1: Use the correct interface for Next.js 15+
 interface LayoutProps {
   children: ReactNode;
   params: Promise<{ locale: Locale }>;
@@ -29,10 +29,13 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
       <div>
-      <Header />
-      <Layout>{children}</Layout>
+        <Header />
+        <Layout>
+          {children}
+          <GlobalDialogs />
+        </Layout>
       </div>
-      <Footer/>
+      <Footer />
     </NextIntlClientProvider>
   );
 }

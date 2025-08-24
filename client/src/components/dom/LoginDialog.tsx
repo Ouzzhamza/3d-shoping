@@ -1,15 +1,23 @@
 "use client";
 
 import { Login } from "@/types/global";
-import React, { useState } from "react";
+import { useAuthStore } from "@/zustand/AuthStore";
+import { useTranslations } from "next-intl";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
-import { MdMail } from 'react-icons/md'; 
-    
+import { MdMail } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
+import { usePathname, useRouter } from "next/navigation";
+import { handleTransitionClick } from "@/lib/utils";
 
+interface LoginDialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSignUpClick?: () => void;
+}
 
-
-function page() {
+function LoginDialog({ isOpen, onClose, onSignUpClick }: LoginDialogProps) {
   const {
     register,
     handleSubmit,
@@ -19,12 +27,37 @@ function page() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const t = useTranslations("Login");
+  const router = useRouter();
+  const pathname = usePathname();
+  const { setisAuthenticated } = useAuthStore();
+
+  // Close dialog on Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleEscape);
+      // Prevent body scroll when dialog is open
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen, onClose]);
+
   const onSubmit = async (data: Login) => {
     setIsLoading(true);
 
     try {
       // Simulate API call
-      console.log("Login data:", data);
+      // console.log("Login data:", data);
 
       // Example:
       // const response = await fetch('/api/auth/login', {
@@ -36,44 +69,81 @@ function page() {
       // Simulate loading delay
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      alert("Login successful!");
+      setisAuthenticated(true);
       reset();
+      onClose(); // Close dialog on successful login
     } catch (error) {
       console.error("Login error:", error);
-      alert("Login failed. Please try again.");
+      // alert("Login failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
-    const handleSocialLogin = (provider: any) => {
-      
-      console.log(`Login with ${provider}`);
-      
-    };
+  const handleSocialLogin = (provider: string) => {
+    console.log(`Login with ${provider}`);
+    // onClose(); // Close dialog after social login
+  };
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  const handleSignUpClick = () => {
+    if (onSignUpClick) {
+      onSignUpClick();
+    } else {
+      // Default behavior - close dialog and navigate to signup
+      onClose();
+      handleTransitionClick("/signup", pathname, router);
+    }
+  };
+
+  if (!isOpen) return null;
 
   return (
-    <section className="max-padd-container mt-16 flex justify-center items-center h-screen">
-      <div className="w-[600px] h-[650px] border-[1px] border-primary rounded-3xl flex justify-center items-center backdrop-blur-3xl">
-        {/* Title */}
-        <div className="relative w-full max-w-md h-full flex flex-col justify-center items-center gap-10">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      onClick={handleBackdropClick}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0  backdrop-blur-md" />
+
+      {/* Dialog */}
+      <div className="relative w-full max-w-md bg-black/50 border border-primary rounded-3xl backdrop-blur-3xl shadow-2xl animate-in zoom-in-95 duration-300">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-full transition-all"
+        >
+          <IoClose className="w-5 h-5" />
+        </button>
+
+        {/* Dialog Content */}
+        <div className="p-8 pt-12">
+          {/* Title */}
           <div className="text-center mb-6">
-            <p className="text-gray-400">
-              Don't have an account yet?{" "}
-              <button className="text-white hover:text-primary transition-colors">
-                Sign up
+            <p className="text-gray-400 flex justify-center items-center gap-2">
+              {t("SignUp1")}
+              <button
+                onClick={handleSignUpClick}
+                className="text-white hover:text-primary transition-colors cursor-pointer"
+              >
+                {t("SignUp2")}
               </button>
             </p>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Email Field */}
             <div>
               <div className="relative">
                 <MdMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                 <input
                   type="email"
-                  placeholder="email address"
+                  placeholder="Email address"
                   className={`w-full bg-gray-800/50 border ${
                     errors.email ? "border-red-500" : "border-gray-700"
                   } rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
@@ -101,7 +171,7 @@ function page() {
                   placeholder="Password"
                   className={`w-full bg-gray-800/50 border ${
                     errors.password ? "border-red-500" : "border-gray-700"
-                  } rounded-lg pl-10 pr-12 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
+                  } rounded-lg pl-4 pr-12 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
@@ -113,7 +183,7 @@ function page() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary transition-colors"
+                  className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary transition-colors"
                 >
                   {showPassword ? (
                     <LuEyeClosed className="w-5 h-5" />
@@ -133,22 +203,17 @@ function page() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-primary hover:bg-highlight-light disabled:bg-primary-dark text-black font-medium py-3 px-4 rounded-3xl transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+              className="w-full cursor-pointer bg-primary hover:bg-highlight-light disabled:bg-primary-dark text-black font-medium py-3 px-4 rounded-3xl transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             >
-              {isLoading ? (
-                <div className="flex items-center justify-center">
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                  Logging in...
-                </div>
-              ) : (
-                "Login"
-              )}
+              {isLoading ? t("LoggingIn") : t("Login")}
             </button>
           </form>
-          <div>
+
+          {/* Google Login */}
+          <div className="mt-6">
             <button
               onClick={() => handleSocialLogin("google")}
-              className="flex-1 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 rounded-lg py-3 px-4 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+              className="w-full bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 rounded-lg py-3 px-4 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
             >
               <svg className="w-5 h-5 mx-auto" viewBox="0 0 24 24">
                 <path
@@ -170,16 +235,17 @@ function page() {
               </svg>
             </button>
           </div>
+
           {/* Forgot Password */}
           <div className="text-center mt-6">
-            <button className="text-gray-400 hover:text-primary text-sm transition-colors">
-              Forgot your password?
+            <button className="text-gray-400 cursor-pointer hover:text-primary text-sm transition-colors">
+              {t("ForgotPassword")}
             </button>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
-export default page;
+export default LoginDialog;

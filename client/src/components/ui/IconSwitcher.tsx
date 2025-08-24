@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdOutline3dRotation } from "react-icons/md";
 import { CiImageOn } from "react-icons/ci";
 import { IconSwitcherProps } from "@/types/global";

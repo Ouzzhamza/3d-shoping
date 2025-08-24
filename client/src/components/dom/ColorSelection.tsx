@@ -2,10 +2,6 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { ColorOption } from "@/types/global";
 
-type Color = {
-  id: string;
-  color: string;
-};
 
 type  ColorSelectionProps = {
   colors: ColorOption[];
